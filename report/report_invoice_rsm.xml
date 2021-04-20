@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="modern_report_invoice_document">
+        <t t-if="o and 'company_id' in o">
+            <t t-set="company" t-value="o.company_id"></t>
+        </t>
+        <t t-if="not o or not 'company_id' in o">
+            <t t-set="company" t-value="res_company"></t>
+        </t>
+        <div class="header">
+            <div class="row mt32 mb32">
+            	<div class="col-1"></div>
+                <div class="col-7 text-center" style="font-size:14px lucida-console,sans-serif !important; text-align:center;">
+                    <strong>
+                    	<span t-field="company.partner_id"/>
+                        <br/>
+                    </strong>
+                        <i><span t-field="o.journal_id.direccion_fel.name"/></i>
+                    <br/>
+                    <div style="font-size:12px;">
+	                    <span t-field="company.partner_id.street"/>
+	                    <br/>
+	                    <span t-field="company.partner_id.city"/>, <span t-field="company.partner_id.country_id"/>
+	                    <br/>
+	                    <span t-field="company.partner_id.phone"/>
+	                    <br/>
+	                    <span>NIT:</span><span t-field="company.partner_id.vat"/>
+	                    <br/>
+                    </div>
+                </div>
+                <div class="col-4" style="max-height:150px; overflow:hidden;">
+                    <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % to_text(company.logo)"
+                         style="width:170px; height:auto; float:right"/>
+                </div>
+            </div>
+        </div>
+        <t t-call="web.external_layout">
+            <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang)"/>
+            <div class="page">
+                <div class="oe_structure"/>
+                <div>
+                    <div class="row mb-32">
+	                    <div class="col-8 mb-32 text-center"></div>
+	                    <div class="col-4 mb-32 text-center" style="font-size:14px lucida-console,sans-serif !important; text-align:center;">
+		                    <table class="table table-sm" style=" table-layout:fixed; border: 0.5px !important; border-style: solid !important; border-color: #bbb !important;">
+			                    <thead style="font-size:14px;">
+				                    <tr>
+					                    <th width="20px" style="background-color:#dcdcdc !important; color:#000 !important; align: center; ">
+                                        Documento Tributario Electrónico
+                                            <t t-if="o.journal_id.tipo_documento_fel == 'FACT'">Factura</t>
+                                            <t t-if="o.journal_id.tipo_documento_fel == 'FCAM'">Factura Cambiaria</t>
+                                            <t t-if="o.journal_id.tipo_documento_fel == 'FESP'">Factura Especial</t>
+                                            <t t-if="o.journal_id.tipo_documento_fel == 'NABN'">Nota de Abono</t>
+                                            <t t-if="o.journal_id.tipo_documento_fel == 'NDEB'">Nota de Debito</t>
+                                            <t t-if="o.journal_id.tipo_documento_fel == 'NCRE'">Nota de Crédito</t>
+                                            <br/><span>emitida en contingencia</span>
+                                        </th>
+				                    </tr>
+			                    </thead>
+			                    <tbody style="font-size:14px;">
+				                    <tr>
+                                        <td class="text-center" style="background-color:#fefefe !important;">
+
+                                                <span style="font-size:13px; color:#6c6c6c;">NO. DE ACCESO:    </span>
+                                                <b><span style="font-size:16px; color:#bb3131;" t-field="o.uuid_contigencia"/></b>
+                                                <br/>
+                                                <span style="font-size:13px; color:#6c6c6c;">NO. INTERNO: </span>
+                                                <b><span style="font-size:13px; color:#3b3b3b;" t-field="o.name"/></b>
+                                                <br/>
+                                        </td>
+                                    </tr>
+			                    </tbody>
+		                    </table>
+	                    </div>
+                    </div>
+                    <br/>
+
+                    <div class="row mt-32">
+                            <div class="col-8">
+                                    <table class="table table-sm" style=" table-layout:fixed;">
+                                        <thead style="">
+                                            <tr>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="font-size:13px;">
+                                            <tr>
+                                              <th colspan="2" style="background-color:#dcdcdc !important; color:#000 !important; border: 1px !important; border-style: solid !important; border-color: #dcdcdc !important;"  scope="row">CLIENTE:</th>
+                                              <td colspan="10" style="color:#000 !important; border: 0.5px !important; border-style: solid !important; border-color: #bbb !important; align: left;"> <span t-field="o.partner_id"/></td>
+                                            </tr>
+                                            <tr>
+                                              <th colspan="2" style="background-color:#dcdcdc !important; color:#000 !important; border: 1px !important; border-style: solid !important; border-color: #dcdcdc !important;" scope="row">NIT:</th>
+                                                <td colspan="10" style="color:#000 !important; border: 0.5px !important; border-style: solid !important; border-color: #bbb !important; align: left;" >
+                                                    <t t-if="o.partner_id.vat">
+                                                        <div t-field="o.partner_id.vat" />
+                                                    </t>
+                                                    <t t-else="False">
+                                                        <span>CF</span>
+                                                    </t>
+                                                </td>
+                                            </tr>
+                                            <t t-if="o.journal_id.tipo_documento_fel == 'FESP'">
+                                                <tr>
+                                                  <th colspan="2" style="background-color:#dcdcdc !important; color:#000 !important; border: 1px !important; border-style: solid !important; border-color: #dcdcdc !important;" scope="row">CUI:</th>
+                                                    <td colspan="10" style="color:#000 !important; border: 0.5px !important; border-style: solid !important; border-color: #bbb !important; align: left;" >
+                                                        <t t-if="o.partner_id.vat">
+                                                            <div t-field="o.partner_id.cui" />
+                                                        </t>
+                                                        <t t-else="False">
+                                                            <span>CF</span>
+                                                        </t>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                            <tr>
+                                              <th colspan="2" style="background-color:#dcdcdc !important; color:#000 !important; border: 1px !important; border-style: solid !important; border-color: #dcdcdc !important;" scope="row">DIRECCIÓN:</th>
+                                              <td colspan="10" style="color:#000 !important; border: 0.5px !important; border-style: solid !important; border-color: #bbb !important; left; center !important;" >
+                                                    <t t-if="o.partner_id.street">
+                                                        <t t-esc="o.partner_id.street"/>
+                                                    </t>
+                                                    <span>,</span>
+                                                    <t t-if="o.partner_id.street2">
+                                                        <t t-esc="o.partner_id.street2"/>
+                                                    </t>
+                                                    <span>,</span>
+                                                    <t t-if="o.partner_id.city">
+                                                        <t t-esc="o.partner_id.city"/>
+                                                    </t>
+                                                    <span>,</span>
+                                                    <t t-if="o.partner_id.state_id.name">
+                                                        <t t-esc="o.partner_id.state_id.name"/>
+                                                    </t>
+                                                    <br/>
+                                                    <span><b>País:</b> </span>
+                                                    <t t-if="o.partner_id.country_id.name">
+                                                        <t t-esc="o.partner_id.country_id.name"/>
+                                                    </t>
+                                                    <br/>
+                                              </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div class="col-4">
+                                    <table class="table table-sm" style=" table-layout:fixed; text-align: center;">
+                                        <thead style="">
+                                            <tr>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="font-size:13px;">
+                                            <tr>
+                                              <th colspan="5" style="background-color:#dcdcdc !important; color:#000 !important; border: 1px !important; border-style: solid !important; border-color: #dcdcdc !important;" scope="row">FECHA EMISION:</th>
+                                              <td colspan="7" style="color:#000 !important; border: 0.5px !important; border-style: solid !important; border-color: #bbb !important; align: center;">  <span t-field="o.invoice_date"/></td>
+                                            </tr>
+                                            <t t-if="o.journal_id.tipo_documento_fel == 'FCAM'" >
+                                                <tr>
+                                                  <th colspan="5" style="background-color:#dcdcdc !important; color:#000 !important; border: 1px !important; border-style: solid !important; border-color: #dcdcdc !important;"  scope="row">FECHA VENCIMIENTO:</th>
+                                                  <td colspan="7" style="color:#000 !important; border: 0.5px !important; border-style: solid !important; border-color: #bbb !important; align: center;"> <span t-field="o.invoice_date_due"/></td>
+                                                </tr>
+                                            </t>
+                                            <t t-if="o.tipo_gasto == 'importacion'" >
+                                                <tr>
+                                                  <th colspan="5" style="background-color:#dcdcdc !important; color:#000 !important; border: 1px !important; border-style: solid !important; border-color: #dcdcdc !important;"  scope="row">INCOTERM:</th>
+                                                  <td colspan="7" style="color:#000 !important; border: 0.5px !important; border-style: solid !important; border-color: #bbb !important; align: center;"> <span t-field="o.invoice_incoterm_id.code"/></td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                            </div>
+
+                    </div>
+<div class="row mt-32">
+    <div class="col-12">
+                    <div style="padding-top:20px;"></div>
+                    <!-- Is there a discount on at least one line? -->
+                    <t t-set="display_discount" t-value="any([l.discount for l in o.invoice_line_ids])"/>
+
+                    <table class="table table-borderless table-sm" style=" table-layout:fixed; padding-top=20px; font-size:13px; ">
+                        <thead>
+                            <tr>
+                                <th width="30px"
+                                    style="background-color:#dcdcdc !important; color:#000 !important; border: 0.5px !important; border-style: solid !important; border-color: #bbb !important; text-align: center; ">
+                                    CANTIDAD
+                                </th>
+                                <th width="150px"
+                                    style="background-color:#dcdcdc !important; color:#000 !important; border: 0.5px !important; border-style: solid !important; border-color: #bbb !important; text-align: center;">
+                                    DESCRIPCIÓN
+                                </th>
+                                <th width="30px"
+                                    style="background-color:#dcdcdc !important; color:#000 !important; border: 0.5px !important; border-style: solid !important; border-color: #bbb !important; text-align: center; ">
+                                    PRECIO UNI.
+                                </th>
+                                <th width="40px"
+                                    style="background-color:#dcdcdc !important; color:#000 !important; border: 0.5px !important; border-style: solid !important; border-color: #bbb !important; text-align: center; "
+                                    t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line">
+                                    DESC. (%)
+                                </th>
+                                <!--<th width="40px"
+                                    style="background-color:#828588 !important;border: 1px !important; border-style: solid !important; border-color: #000000; color:#fff !important; text-align: center; ">
+                                    Impuesto
+                                </th> -->
+                                <th width="40px"
+                                    style="background-color:#dcdcdc !important; color:#000 !important; border: 0.5px !important; border-style: solid !important; border-color: #bbb !important; text-align: center; ">
+                                    TOTAL
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="invoice_tbody">
+                            <tr t-foreach="o.invoice_line_ids" t-as="l">
+                                <td class="text-right">
+                                    <span t-field="l.quantity" />
+                                    <span t-field="l.uom_id" groups="product.group_uom"/>
+                                </td>
+                                <td>
+                                    <span t-field="l.name"/>
+                                </td>
+
+                                <td class="text-right">
+                                    <span t-field="l.price_unit"/>
+                                </td>
+                                <td t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line">
+                                    <span t-field="l.discount"/>
+                                </td>
+                                <!--<td>
+                                    <span t-esc="', '.join(map(lambda x: (x.description or x.name), l.tax_ids))"/>
+                                </td>-->
+                                <td class="text-right">
+                                    <span t-field="l.price_total"
+                                          t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                </div>
+</div>
+                <div class="row" tyle="padding-top:40px;">
+	                <div class="col-8">	                
+	                </div>
+                    <div class="col-4">
+                        <table class="table table-sm">
+                            <!--<tr class="border-black">
+                            	<td>
+                                    <strong>Subtotal</strong>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="o.amount_untaxed"
+                                          t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                </td>
+                            </tr>
+
+                            <t t-foreach="o.amount_by_group" t-as="amount_by_group">
+                                <tr>
+	                                <td>
+                                        <span t-esc="amount_by_group[0]"/>
+                                        <t t-if="amount_by_group[0] == 'Impuestos'">
+                                        	<span>Retenciones</span>
+                                        </t>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-esc="'%.2f'%(amount_by_group[1])"/>
+                                    </td>
+                                </tr>
+                            </t> -->
+                            <tr class="">
+                                <td style="border: 1px solid #333!important;  background-color:#fff !important; color:#000 !important;">
+                                    <strong>Total:</strong>
+                                </td>
+                                <td style="border: 1px solid #333!important;  background-color:#fff !important; color:#000 !important;" class="text-right">
+                                    <strong><span t-field="o.amount_total"
+                                          t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/></strong>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                    
+                </div>
+                <div class="row">
+	                <div class="col-12">
+						<table class="table table-sm" style="font-size: 13px;">
+                            <tbody>
+                                <tr style="border-top:none;">
+                                    <td style="border-top:none; color: color:#6c6c6c;"><b>Sujeto a Pagos Trimestrales</b></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><b>TOTAL EN LETAS:</b> <span t-esc="o.amount_to_text1()"/></td>
+                                </tr>
+                            </tbody>
+						</table>		                
+	                </div>
+                </div>
+                <br/>
+                <br/>
+                <div style="padding-top:50px;">
+                </div>
+                <p t-if="o.narration">
+                    <strong>Comentarios:</strong>
+                    <span t-field="o.narration"/>
+                </p>
+
+            </div>
+            <div class="footer">
+            	<div class="col-12">
+		            <table class="table table-sm table-bordered">
+		            	<tbody>
+		            		<tr>
+		            			<td colspan="5" class="text-center" ><span style="font-size: 12px;">Para descargar su documento tributario CERTIFICADO visite: <br/> <a href="https://portal.sat.gob.gt/portal/verificador-publico-de-dte/">https://portal.sat.gob.gt/portal/verificador-publico-de-dte/</a></span></td>
+			            		<td colspan="7" class="text-center" style="font-size: 12px;"><span style="font-size: 13px;">CERTIFICADOR:  MEGAPRINT-FEL NIT: 5051023-1</span> <br/><span> FIRMA:</span><span style="font-size: 12px;" t-field="o.firma_fel"/> <br/><span>SERIE: </span><span style="font-size: 12px;" t-field="o.serie_fel"/><br/><span>NUMERO: </span><span style="font-size: 12px;" t-field="o.numero_fel"/> </td>
+			            	</tr>
+		            	</tbody>
+		            </table>
+            	</div>
+            </div>
+        </t>
+    </template>
+
+	 <template id="modern_report_invoice">
+	    <t t-call="web.html_container">
+	        <t t-foreach="docs" t-as="o">
+	<!--                    <t t-set="lang" t-value="o.invoice_user_id.lang if o.type in ('in_invoice', 'in_refund') else o.partner_id.lang"/> -->
+	            <t t-call="fel_megaprint.modern_report_invoice_document" t-lang="lang"/>
+	        </t>
+	    </t>
+	</template>
+	
+</odoo>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="invoice_form_fel_megaprint">
+			<field name="name">account.move.form.fel_megaprint</field>
+			<field name="model">account.move</field>
+			<field name="inherit_id" ref="account.view_move_form"/>
+			<field name="arch" type="xml">
+				<data>		
+					<notebook position = "inside">
+						<page string= "Datos FEL">
+							<group>
+								<group>
+									<field name="estado_doc_fel" attrs="{'readonly': [('state','!=','draft')]}"/>
+									<field name="tipo_doc_fel" attrs="{'readonly': [('state','!=','draft')]}"/>
+									<field name="firma_fel" attrs="{'readonly': [('state','!=','draft')]}"/>
+									<field name="serie_fel" attrs="{'readonly': [('state','!=','draft')]}"/>
+									<field name="numero_fel" attrs="{'readonly': [('state','!=','draft')]}"/>
+									<field name="name_pdf_fel" invisible="1"/>
+									<field name="pdf_fel" filename="name_pdf_fel"/>
+									<field name="pdf_uri" attrs="{'invisible': [('state','!=','draft')]}" />				
+								</group>
+								<group>
+									<field name="factura_org_id" attrs="{'readonly': [('state','!=','draft')]}" domain="[('partner_id', '=', partner_id)]"/>
+									<field name="motivo_nota" attrs="{'readonly': [('state','!=','draft')]}"/>
+									<field name="motivo_anula_fel" attrs="{'readonly': [('state','!=','draft')]}"/>
+									<field name="contingencia_fel" attrs="{'readonly': [('state','!=','draft')]}" />
+									<field name="uuid_contigencia" attrs="{'readonly': [('state','!=','draft')]}" />
+								</group>
+								<group>
+			                        <field name="consignatario_fel" attrs="{'invisible': [('tipo_gasto','!=','importacion')]}"/>
+			                        <field name="comprador_fel" attrs="{'invisible': [('tipo_gasto','!=','importacion')]}"/>
+			                        <field name="exportador_fel" attrs="{'invisible': [('tipo_gasto','!=','importacion')]}"/>
+								</group>
+							</group>
+						</page>
+					</notebook>
+					<xpath expr="//header" position="inside">
+						<button name="invoice_fel"  type="object" class="oe_highlight invoice_fel" string="FEL" attrs="{'invisible': [('state', '==', 'draft')]}"/>
+						<button name="invoice_contigencia"  type="object" class="oe_highlight invoice_fel" string="Contigencia" attrs="{'invisible': [('state', '==', 'draft')]}"/>
+						<button name="invoiceDue_fel" type="object" class="oe_highlight invoiceDue_fel" string="Cancelar FEL" attrs="{'invisible': [('state', 'not in', ['draft','cancel'])]}"/> 
+					</xpath>
+				    <field name="invoice_incoterm_id" position="replace"/>
+		            <field name="exportador_fel" position="after">
+		                <field name="invoice_incoterm_id" attrs="{'invisible': [('tipo_gasto','!=','importacion')]}" />
+		            </field>					
+				</data>
+			</field>
+		</record>
+		<record model="ir.ui.view" id="journal_form_fel_megaprint">
+			<field name="name">account.journal.form.fel_megaprint</field>
+			<field name="model">account.journal</field>
+			<field name="inherit_id" ref="account.view_account_journal_form"/>
+			<field name="arch" type="xml">
+				<data>
+					<notebook position = "inside" >
+						<page string="FEL Configuración">
+							<group string="megaprint">
+								<field name="tipo_documento_fel" attrs="{'invisible':[('type', '!=', 'sale'),('type', '!=', 'sale_refund'), ('type', '!=', 'purchase')]}" />
+								<field name="direccion_fel" attrs="{'invisible':[('type', '!=', 'sale'),('type', '!=', 'sale_refund'), ('type', '!=', 'purchase')]}" />
+							</group>
+						</page>
+					</notebook>
+				</data>
+			</field>
+		</record>
+		<record id="invoice_tree_fel_megaprint" model="ir.ui.view">
+			<field name="name">fel_view_invoice_tree</field>
+			<field name="model">account.move</field>
+			<field name="inherit_id" ref="account.view_invoice_tree"/>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<field name="state" position="after">
+					<field name="tipo_doc_fel"/>
+					<field name="serie_fel"/>
+					<field name="numero_fel"/>
+					<field name="firma_fel"/>
+					<field name="factura_org_id" string="Referencia" />					
+					<field name="uuid_contigencia" string="Numero de acceso" />					
+				</field>
+			</field>
+		</record>
+		<record id="view_company_form_fel_megaprint" model="ir.ui.view">
+			<field name="name">res.company.form.fel_megaprint</field>
+			<field name="model">res.company</field>
+			<field name="inherit_id" ref="base.view_company_form"/>
+			<field name="arch" type="xml">
+				<data>
+					<notebook position="inside">
+						<page string="FEL">
+							<group string="megaprint">
+								<group>
+									<field name="url_api_fel" />
+									<field name="url_api_token_fel" />
+									<field name="url_api_firma_fel" />
+									<field name="url_api_anula_fel" />
+									<field name="url_api_pdf_fel" />
+								</group>
+								<group>
+									<field name="dev_url_api_fel" />
+									<field name="dev_url_api_token_fel" />
+									<field name="dev_url_api_firma_fel" />
+									<field name="dev_url_api_anula_fel" />
+									<field name="dev_url_api_pdf_fel" />									
+								</group>								
+							</group>
+						</page>
+					</notebook>
+				</data>
+			</field>
+		</record>
+	</data>
+</odoo>

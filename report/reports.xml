@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+         <report
+            id="rsm_invoice_report"
+            string="Factura en Contingencia"
+            model="account.move"
+            report_type="qweb-pdf"
+            name="fel_megaprint.modern_report_invoice"
+            print_report_name="('Factura en Contingencia - %s' % (object.name))"
+            groups="account.group_account_invoice"/>
+    </data>
+</odoo>

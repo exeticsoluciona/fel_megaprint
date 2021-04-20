@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="view_partner_form_fel_fogara" model="ir.ui.view">
+			<field name="name">res.partner.form.fel_fegora</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form"/>
+			<field name="arch" type="xml">
+				<data>
+					<notebook position="inside">
+						<page string="FEL">
+							<group string="Fegora">
+								<group>
+									<field name="username_fel" />
+									<field name="password_fel" />
+									<!--<field name="root_partner_id" position="after" /> -->
+									<field name="codigo_establecimiento" placeholder="Código Establecimiento Fel" />
+									<field name="frases_fel" />
+								</group>
+							</group>
+						</page>
+					</notebook>
+				</data>
+			</field>
+		</record>
+	</data>
+</openerp>
