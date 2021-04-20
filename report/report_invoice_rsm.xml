@@ -39,21 +39,21 @@
             <div class="page">
                 <div class="oe_structure"/>
                 <div>
-                    <div class="row mb-32">
+                    <div class="row mb-32 mt-32">
 	                    <div class="col-8 mb-32 text-center"></div>
 	                    <div class="col-4 mb-32 text-center" style="font-size:14px lucida-console,sans-serif !important; text-align:center;">
-		                    <table class="table table-sm" style=" table-layout:fixed; border: 0.5px !important; border-style: solid !important; border-color: #bbb !important;">
+		                    <table class="table table-sm" style=" table-layout:fixed; border: 2px !important; border-style: solid !important; border-color:#979797 !important;">
 			                    <thead style="font-size:14px;">
 				                    <tr>
 					                    <th width="20px" style="background-color:#dcdcdc !important; color:#000 !important; align: center; ">
-                                        Documento Tributario Electrónico
+                                        Documento Tributario Electrónico:
                                             <t t-if="o.journal_id.tipo_documento_fel == 'FACT'">Factura</t>
                                             <t t-if="o.journal_id.tipo_documento_fel == 'FCAM'">Factura Cambiaria</t>
                                             <t t-if="o.journal_id.tipo_documento_fel == 'FESP'">Factura Especial</t>
                                             <t t-if="o.journal_id.tipo_documento_fel == 'NABN'">Nota de Abono</t>
                                             <t t-if="o.journal_id.tipo_documento_fel == 'NDEB'">Nota de Debito</t>
                                             <t t-if="o.journal_id.tipo_documento_fel == 'NCRE'">Nota de Crédito</t>
-                                            <br/><span>emitida en contingencia</span>
+                                            <br/><span>Emitido en Contingencia</span>
                                         </th>
 				                    </tr>
 			                    </thead>
@@ -84,12 +84,12 @@
                                         </thead>
                                         <tbody style="font-size:13px;">
                                             <tr>
-                                              <th colspan="2" style="background-color:#dcdcdc !important; color:#000 !important; border: 1px !important; border-style: solid !important; border-color: #dcdcdc !important;"  scope="row">CLIENTE:</th>
-                                              <td colspan="10" style="color:#000 !important; border: 0.5px !important; border-style: solid !important; border-color: #bbb !important; align: left;"> <span t-field="o.partner_id"/></td>
+                                              <th colspan="2" style="background-color:#dcdcdc !important; color:#000 !important; border: 2px !important; border-style: solid !important; border-color:#979797 !important;"  scope="row">CLIENTE:</th>
+                                              <td colspan="10" style="color:#000 !important; border: 2px !important; border-style: solid !important; border-color:#979797 !important; align: left;"> <span t-field="o.partner_id"/></td>
                                             </tr>
                                             <tr>
-                                              <th colspan="2" style="background-color:#dcdcdc !important; color:#000 !important; border: 1px !important; border-style: solid !important; border-color: #dcdcdc !important;" scope="row">NIT:</th>
-                                                <td colspan="10" style="color:#000 !important; border: 0.5px !important; border-style: solid !important; border-color: #bbb !important; align: left;" >
+                                              <th colspan="2" style="background-color:#dcdcdc !important; color:#000 !important; border: 2px !important; border-style: solid !important; border-color:#979797 !important;" scope="row">NIT:</th>
+                                                <td colspan="10" style="color:#000 !important; border: 2px !important; border-style: solid !important; border-color:#979797 !important; align: left;" >
                                                     <t t-if="o.partner_id.vat">
                                                         <div t-field="o.partner_id.vat" />
                                                     </t>
@@ -100,8 +100,8 @@
                                             </tr>
                                             <t t-if="o.journal_id.tipo_documento_fel == 'FESP'">
                                                 <tr>
-                                                  <th colspan="2" style="background-color:#dcdcdc !important; color:#000 !important; border: 1px !important; border-style: solid !important; border-color: #dcdcdc !important;" scope="row">CUI:</th>
-                                                    <td colspan="10" style="color:#000 !important; border: 0.5px !important; border-style: solid !important; border-color: #bbb !important; align: left;" >
+                                                  <th colspan="2" style="background-color:#dcdcdc !important; color:#000 !important; border: 2px !important; border-style: solid !important; border-color:#979797 !important;" scope="row">CUI:</th>
+                                                    <td colspan="10" style="color:#000 !important; border: 2px !important; border-style: solid !important; border-color:#979797 !important; align: left;" >
                                                         <t t-if="o.partner_id.vat">
                                                             <div t-field="o.partner_id.cui" />
                                                         </t>
@@ -112,8 +112,8 @@
                                                 </tr>
                                             </t>
                                             <tr>
-                                              <th colspan="2" style="background-color:#dcdcdc !important; color:#000 !important; border: 1px !important; border-style: solid !important; border-color: #dcdcdc !important;" scope="row">DIRECCIÓN:</th>
-                                              <td colspan="10" style="color:#000 !important; border: 0.5px !important; border-style: solid !important; border-color: #bbb !important; left; center !important;" >
+                                              <th colspan="2" style="background-color:#dcdcdc !important; color:#000 !important; border: 2px !important; border-style: solid !important; border-color:#979797 !important;" scope="row">DIRECCIÓN:</th>
+                                              <td colspan="10" style="color:#000 !important; border: 2px !important; border-style: solid !important; border-color:#979797 !important; left; center !important;" >
                                                     <t t-if="o.partner_id.street">
                                                         <t t-esc="o.partner_id.street"/>
                                                     </t>
@@ -148,19 +148,19 @@
                                         </thead>
                                         <tbody style="font-size:13px;">
                                             <tr>
-                                              <th colspan="5" style="background-color:#dcdcdc !important; color:#000 !important; border: 1px !important; border-style: solid !important; border-color: #dcdcdc !important;" scope="row">FECHA EMISION:</th>
-                                              <td colspan="7" style="color:#000 !important; border: 0.5px !important; border-style: solid !important; border-color: #bbb !important; align: center;">  <span t-field="o.invoice_date"/></td>
+                                              <th colspan="6" style="background-color:#dcdcdc !important; color:#000 !important; border: 2px !important; border-style: solid !important; border-color:#979797 !important;" scope="row">FECHA EMISION:</th>
+                                              <td colspan="6" style="color:#000 !important; border: 2px !important; border-style: solid !important; border-color:#979797 !important; align: center;">  <span t-field="o.invoice_date"/></td>
                                             </tr>
                                             <t t-if="o.journal_id.tipo_documento_fel == 'FCAM'" >
                                                 <tr>
-                                                  <th colspan="5" style="background-color:#dcdcdc !important; color:#000 !important; border: 1px !important; border-style: solid !important; border-color: #dcdcdc !important;"  scope="row">FECHA VENCIMIENTO:</th>
-                                                  <td colspan="7" style="color:#000 !important; border: 0.5px !important; border-style: solid !important; border-color: #bbb !important; align: center;"> <span t-field="o.invoice_date_due"/></td>
+                                                  <th colspan="5" style="background-color:#dcdcdc !important; color:#000 !important; border: 2px !important; border-style: solid !important; border-color:#979797 !important;"  scope="row">FECHA VENCIMIENTO:</th>
+                                                  <td colspan="7" style="color:#000 !important; border: 2px !important; border-style: solid !important; border-color:#979797 !important; align: center;"> <span t-field="o.invoice_date_due"/></td>
                                                 </tr>
                                             </t>
                                             <t t-if="o.tipo_gasto == 'importacion'" >
                                                 <tr>
-                                                  <th colspan="5" style="background-color:#dcdcdc !important; color:#000 !important; border: 1px !important; border-style: solid !important; border-color: #dcdcdc !important;"  scope="row">INCOTERM:</th>
-                                                  <td colspan="7" style="color:#000 !important; border: 0.5px !important; border-style: solid !important; border-color: #bbb !important; align: center;"> <span t-field="o.invoice_incoterm_id.code"/></td>
+                                                  <th colspan="5" style="background-color:#dcdcdc !important; color:#000 !important; border: 2px !important; border-style: solid !important; border-color:#979797 !important;"  scope="row">INCOTERM:</th>
+                                                  <td colspan="7" style="color:#000 !important; border: 2px !important; border-style: solid !important; border-color:#979797 !important; align: center;"> <span t-field="o.invoice_incoterm_id.code"/></td>
                                                 </tr>
                                             </t>
                                         </tbody>
@@ -178,28 +178,28 @@
                         <thead>
                             <tr>
                                 <th width="30px"
-                                    style="background-color:#dcdcdc !important; color:#000 !important; border: 0.5px !important; border-style: solid !important; border-color: #bbb !important; text-align: center; ">
+                                    style="background-color:#dcdcdc !important; color:#000 !important; border: 2px !important; border-style: solid !important; border-color:#979797 !important; text-align: center; ">
                                     CANTIDAD
                                 </th>
                                 <th width="150px"
-                                    style="background-color:#dcdcdc !important; color:#000 !important; border: 0.5px !important; border-style: solid !important; border-color: #bbb !important; text-align: center;">
+                                    style="background-color:#dcdcdc !important; color:#000 !important; border: 2px !important; border-style: solid !important; border-color:#979797 !important; text-align: center;">
                                     DESCRIPCIÓN
                                 </th>
                                 <th width="30px"
-                                    style="background-color:#dcdcdc !important; color:#000 !important; border: 0.5px !important; border-style: solid !important; border-color: #bbb !important; text-align: center; ">
+                                    style="background-color:#dcdcdc !important; color:#000 !important; border: 2px !important; border-style: solid !important; border-color:#979797 !important; text-align: center; ">
                                     PRECIO UNI.
                                 </th>
                                 <th width="40px"
-                                    style="background-color:#dcdcdc !important; color:#000 !important; border: 0.5px !important; border-style: solid !important; border-color: #bbb !important; text-align: center; "
+                                    style="background-color:#dcdcdc !important; color:#000 !important; border: 2px !important; border-style: solid !important; border-color:#979797 !important; text-align: center; "
                                     t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line">
                                     DESC. (%)
                                 </th>
                                 <!--<th width="40px"
-                                    style="background-color:#828588 !important;border: 1px !important; border-style: solid !important; border-color: #000000; color:#fff !important; text-align: center; ">
+                                    style="background-color:#828588 !important;border: 2px !important; border-style: solid !important; border-color: #000000; color:#fff !important; text-align: center; ">
                                     Impuesto
                                 </th> -->
                                 <th width="40px"
-                                    style="background-color:#dcdcdc !important; color:#000 !important; border: 0.5px !important; border-style: solid !important; border-color: #bbb !important; text-align: center; ">
+                                    style="background-color:#dcdcdc !important; color:#000 !important; border: 2px !important; border-style: solid !important; border-color:#979797 !important; text-align: center; ">
                                     TOTAL
                                 </th>
                             </tr>
@@ -234,8 +234,18 @@
 
                 </div>
 </div>
-                <div class="row" tyle="padding-top:40px;">
-	                <div class="col-8">	                
+                <br/>
+                <br/>
+                <span style="color: #808080;"><b>SUJETO A PAGOS TRIMESTRALES</b></span>
+                <div class="row" style="padding-top:20px; font-size:14px;">
+	                <div class="col-8">
+                        <table class="table table-sm">
+                                <tr>
+                                    <t t-if="o.currency_id.name == 'GTQ'">
+                                        <td colspan="2"><b>TOTAL EN LETRAS:</b> <span t-esc="o.amount_to_text1()"/></td>
+                                    </t>
+                                </tr>
+                        </table>
 	                </div>
                     <div class="col-4">
                         <table class="table table-sm">
@@ -262,11 +272,16 @@
                                     </td>
                                 </tr>
                             </t> -->
-                            <tr class="">
-                                <td style="border: 1px solid #333!important;  background-color:#fff !important; color:#000 !important;">
-                                    <strong>Total:</strong>
+                            <tr>
+
+                            </tr>
+
+                            <tr style="border: 2px solid #979797 !important;">
+
+                                <td style="background-color:#fff !important; border-radius: 25px !important; color:#000 !important;">
+                                    <strong>TOTAL:</strong>
                                 </td>
-                                <td style="border: 1px solid #333!important;  background-color:#fff !important; color:#000 !important;" class="text-right">
+                                <td style="background-color:#fff !important; color:#000 !important;" class="text-right">
                                     <strong><span t-field="o.amount_total"
                                           t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/></strong>
                                 </td>
@@ -276,20 +291,7 @@
                     </div>
                     
                 </div>
-                <div class="row">
-	                <div class="col-12">
-						<table class="table table-sm" style="font-size: 13px;">
-                            <tbody>
-                                <tr style="border-top:none;">
-                                    <td style="border-top:none; color: color:#6c6c6c;"><b>Sujeto a Pagos Trimestrales</b></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2"><b>TOTAL EN LETAS:</b> <span t-esc="o.amount_to_text1()"/></td>
-                                </tr>
-                            </tbody>
-						</table>		                
-	                </div>
-                </div>
+
                 <br/>
                 <br/>
                 <div style="padding-top:50px;">

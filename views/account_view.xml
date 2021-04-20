@@ -37,7 +37,7 @@
 					</notebook>
 					<xpath expr="//header" position="inside">
 						<button name="invoice_fel"  type="object" class="oe_highlight invoice_fel" string="FEL" attrs="{'invisible': [('state', '==', 'draft')]}"/>
-						<button name="invoice_contigencia"  type="object" class="oe_highlight invoice_fel" string="Contigencia" attrs="{'invisible': [('state', '==', 'draft')]}"/>
+						<button name="invoice_contigencia"  type="object" class="oe_highlight invoice_fel" string="Contingencia" attrs="{'invisible': [('state', '==', 'draft')]}"/>
 						<button name="invoiceDue_fel" type="object" class="oe_highlight invoiceDue_fel" string="Cancelar FEL" attrs="{'invisible': [('state', 'not in', ['draft','cancel'])]}"/> 
 					</xpath>
 				    <field name="invoice_incoterm_id" position="replace"/>
