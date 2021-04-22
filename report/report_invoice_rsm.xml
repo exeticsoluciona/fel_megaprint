@@ -65,7 +65,7 @@
                                                 <b><span style="font-size:16px; color:#bb3131;" t-field="o.uuid_contigencia"/></b>
                                                 <br/>
                                                 <span style="font-size:13px; color:#6c6c6c;">NO. INTERNO: </span>
-                                                <b><span style="font-size:13px; color:#3b3b3b;" t-field="o.name"/></b>
+                                                <b><span style="font-size:13px; color:#3b3b3b;" t-field="o.invoice_payment_ref"/></b>
                                                 <br/>
                                         </td>
                                     </tr>
@@ -117,24 +117,29 @@
                                                     <t t-if="o.partner_id.street">
                                                         <t t-esc="o.partner_id.street"/>
                                                     </t>
-                                                    <span>,</span>
+                                                    <span> <![CDATA[
+&nbsp;
+]]> </span>
                                                     <t t-if="o.partner_id.street2">
                                                         <t t-esc="o.partner_id.street2"/>
                                                     </t>
-                                                    <span>,</span>
+                                                    <span> <![CDATA[
+&nbsp;
+]]> </span>
                                                     <t t-if="o.partner_id.city">
                                                         <t t-esc="o.partner_id.city"/>
                                                     </t>
-                                                    <span>,</span>
+                                                    <span> <![CDATA[
+&nbsp;
+]]> </span>
                                                     <t t-if="o.partner_id.state_id.name">
                                                         <t t-esc="o.partner_id.state_id.name"/>
                                                     </t>
-                                                    <br/>
-                                                    <span><b>País:</b> </span>
+
                                                     <t t-if="o.partner_id.country_id.name">
+                                                        <span><b>País:</b> </span>
                                                         <t t-esc="o.partner_id.country_id.name"/>
                                                     </t>
-                                                    <br/>
                                               </td>
                                             </tr>
                                         </tbody>
@@ -153,14 +158,14 @@
                                             </tr>
                                             <t t-if="o.journal_id.tipo_documento_fel == 'FCAM'" >
                                                 <tr>
-                                                  <th colspan="5" style="background-color:#dcdcdc !important; color:#000 !important; border: 2px !important; border-style: solid !important; border-color:#979797 !important;"  scope="row">FECHA VENCIMIENTO:</th>
-                                                  <td colspan="7" style="color:#000 !important; border: 2px !important; border-style: solid !important; border-color:#979797 !important; align: center;"> <span t-field="o.invoice_date_due"/></td>
+                                                  <th colspan="6" style="background-color:#dcdcdc !important; color:#000 !important; border: 2px !important; border-style: solid !important; border-color:#979797 !important;"  scope="row">FECHA VENCIMIENTO:</th>
+                                                  <td colspan="6" style="color:#000 !important; border: 2px !important; border-style: solid !important; border-color:#979797 !important; align: center;"> <span t-field="o.invoice_date_due"/></td>
                                                 </tr>
                                             </t>
                                             <t t-if="o.tipo_gasto == 'importacion'" >
                                                 <tr>
-                                                  <th colspan="5" style="background-color:#dcdcdc !important; color:#000 !important; border: 2px !important; border-style: solid !important; border-color:#979797 !important;"  scope="row">INCOTERM:</th>
-                                                  <td colspan="7" style="color:#000 !important; border: 2px !important; border-style: solid !important; border-color:#979797 !important; align: center;"> <span t-field="o.invoice_incoterm_id.code"/></td>
+                                                  <th colspan="6" style="background-color:#dcdcdc !important; color:#000 !important; border: 2px !important; border-style: solid !important; border-color:#979797 !important;"  scope="row">INCOTERM:</th>
+                                                  <td colspan="6" style="color:#000 !important; border: 2px !important; border-style: solid !important; border-color:#979797 !important; align: center;"> <span t-field="o.invoice_incoterm_id.code"/></td>
                                                 </tr>
                                             </t>
                                         </tbody>
@@ -241,37 +246,15 @@
 	                <div class="col-8">
                         <table class="table table-sm">
                                 <tr>
-                                    <t t-if="o.currency_id.name == 'GTQ'">
+                                    <!--<t t-if="o.currency_id.name == 'GTQ'">-->
                                         <td colspan="2"><b>TOTAL EN LETRAS:</b> <span t-esc="o.amount_to_text1()"/></td>
-                                    </t>
+                                    <!--</t>-->
                                 </tr>
                         </table>
 	                </div>
                     <div class="col-4">
                         <table class="table table-sm">
-                            <!--<tr class="border-black">
-                            	<td>
-                                    <strong>Subtotal</strong>
-                                </td>
-                                <td class="text-right">
-                                    <span t-field="o.amount_untaxed"
-                                          t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
-                                </td>
-                            </tr>
 
-                            <t t-foreach="o.amount_by_group" t-as="amount_by_group">
-                                <tr>
-	                                <td>
-                                        <span t-esc="amount_by_group[0]"/>
-                                        <t t-if="amount_by_group[0] == 'Impuestos'">
-                                        	<span>Retenciones</span>
-                                        </t>
-                                    </td>
-                                    <td class="text-right">
-                                        <span t-esc="'%.2f'%(amount_by_group[1])"/>
-                                    </td>
-                                </tr>
-                            </t> -->
                             <tr>
 
                             </tr>
@@ -282,10 +265,37 @@
                                     <strong>TOTAL:</strong>
                                 </td>
                                 <td style="background-color:#fff !important; color:#000 !important;" class="text-right">
-                                    <strong><span t-field="o.amount_total"
-                                          t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/></strong>
+                                    <strong><span t-field="o.amount_total" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/></strong>
                                 </td>
                             </tr>
+                            <t t-if="o.journal_id.tipo_documento_fel == 'FESP'">
+
+                            <!--<tr class="border-black">
+                            	<td>
+                                    <strong>Subtotal</strong>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="o.amount_untaxed"
+                                          t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                </td>
+                            </tr>-->
+
+                            <t t-foreach="o.amount_by_group" t-as="amount_by_group">
+                                <tr>
+	                                <td>
+                                        <!--<span t-esc="amount_by_group[0]"/>-->
+                                        <t t-if="amount_by_group[0] == 'Impuestos'">
+                                        	<span>Retenciones Efectuadas</span>
+                                        </t>
+                                    </td>
+                                    <td class="text-right">
+                                      <t t-if="amount_by_group[0] == 'Impuestos'">
+                                        <span t-esc="'%.2f'%(amount_by_group[1])"/>
+                                      </t>
+                                    </td>
+                                </tr>
+                            </t>
+                            </t>
                         </table>
 
                     </div>
