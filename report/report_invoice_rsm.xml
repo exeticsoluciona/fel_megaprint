@@ -240,9 +240,10 @@
 	                                <td class="text-right">
                                                 <t t-set="totalesp" t-value="0"/>
 		                                <t t-set="total_line" t-value="l.price_unit*l.quantity" />
-                                                <t t-set="totalesp" t-value="total+total_line"/>
+
 	                                    <!-- Q <span t-esc="l.price_unit*l.quantity" /> -->
 	                                    <span t-esc="total_line" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' />
+                                        <t t-set="totalesp" t-value="totalesp+total_line"/>
 	                                </td>
                                 </t>
 
@@ -290,7 +291,7 @@
                                         <strong>TOTAL:</strong>
                                     </td>
                                     <td style="background-color:#fff !important; color:#000 !important;" class="text-right">
-                                        <strong><span t-field="totalesp" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/></strong>
+                                        <strong><span t-esc="totalesp" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/></strong>
                                     </td>
                             </t>
 
