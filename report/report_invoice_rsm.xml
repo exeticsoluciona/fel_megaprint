@@ -280,27 +280,86 @@
                                 </td>
                             </tr>-->
 
-                            <t t-foreach="o.amount_by_group" t-as="amount_by_group">
-                                <tr>
-	                                <td>
-                                        <!--<span t-esc="amount_by_group[0]"/>-->
-                                        <t t-if="amount_by_group[0] == 'Impuestos'">
-                                        	<span>Retenciones Efectuadas</span>
-                                        </t>
-                                    </td>
-                                    <td class="text-right">
-                                      <t t-if="amount_by_group[0] == 'Impuestos'">
-                                        <span t-esc="'%.2f'%(amount_by_group[1])"/>
-                                      </t>
-                                    </td>
-                                </tr>
-                            </t>
+                             <t t-foreach="o.amount_by_group" t-as="amount_by_group">
+                                    <t t-if="amount_by_group[0] != 'Impuestos'">
+                                        <tr>
+                                            <td>
+                                                <span t-esc="amount_by_group[0]"/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-esc="'%.2f'%(abs(amount_by_group[1]))"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </t>
                             </t>
                         </table>
 
                     </div>
                     
                 </div>
+
+                <!-- Nota de credito -->
+	            <t t-if="o.journal_id.tipo_documento_fel == 'NCRE'">
+                    <div class="row">
+                        <div class="col-12">
+                            <table class="table table-sm" style=" table-layout:fixed;">
+                                <thead style="">
+                                    <tr></tr>
+                                </thead>
+                                <tbody style="font-size:13px;">
+                                    <tr>
+                                        <th colspan="2" style="background-color:#dcdcdc !important; color:#000 !important; border: 1px !important; border-style: solid !important; border-color: #dcdcdc !important;" scope="row">Factura Original:</th>
+                                        <td colspan="10" style="color:#000 !important; border: 0.5px !important; border-style: solid !important; border-color: #bbb !important; align: left;">
+                                            <span t-field="o.factura_org_id.firma_fel"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="2" style="background-color:#dcdcdc !important; color:#000 !important; border: 1px !important; border-style: solid !important; border-color: #dcdcdc !important;" scope="row">Motivo:</th>
+                                        <td colspan="10" style="color:#000 !important; border: 0.5px !important; border-style: solid !important; border-color: #bbb !important; align: left;">
+                                            <span t-field="o.motivo_nota"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+                <!-- / Nota de credito -->
+                <!-- Exportacion -->
+                <t t-if="o.tipo_gasto == 'importacion'" >
+                    <div class="row">
+                        <div class="col-12">
+                            <table class="table table-sm" style=" table-layout:fixed;">
+                                <thead style="">
+                                    <tr></tr>
+                                </thead>
+                                <tbody style="font-size:13px;">
+                                    <tr>
+                                        <th colspan="2" style="background-color:#dcdcdc !important; color:#000 !important; border: 1px !important; border-style: solid !important; border-color: #dcdcdc !important;" scope="row">CONSIGNATARIO:</th>
+                                        <td colspan="10" style="color:#000 !important; border: 0.5px !important; border-style: solid !important; border-color: #bbb !important; align: left;">
+                                            <span t-field="o.consignatario_fel.name"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="2" style="background-color:#dcdcdc !important; color:#000 !important; border: 1px !important; border-style: solid !important; border-color: #dcdcdc !important;" scope="row">COMPRADOR:</th>
+                                        <td colspan="10" style="color:#000 !important; border: 0.5px !important; border-style: solid !important; border-color: #bbb !important; align: left;" >
+                                            <span t-field="o.comprador_fel.name"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="2" style="background-color:#dcdcdc !important; color:#000 !important; border: 1px !important; border-style: solid !important; border-color: #dcdcdc !important;" scope="row">EXPORTADOR:</th>
+                                        <td colspan="10" style="color:#000 !important; border: 0.5px !important; border-style: solid !important; border-color: #bbb !important; align: left;" >
+                                            <span t-field="o.exportador_fel.name"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+                <!-- / Exportacion -->
+
 
                 <br/>
                 <br/>

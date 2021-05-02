@@ -18,6 +18,13 @@ import random
 
 class AccountInvoice(models.Model):
     _inherit = "account.move"
+
+    def button_draft(self):
+        for factura in self:
+            if factura.estado_doc_fel == 'Activo':
+                raise UserError("No se puede cancelar o cambia a borrador una factura activa en FEL.")
+        return super(AccountInvoice, self).button_draft()
+
     
     def invoice_fel(self):
                           
