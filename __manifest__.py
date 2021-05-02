@@ -2,7 +2,7 @@
 
 {
     'name': 'FEL Mega Print',
-    'version': '0.2',
+    'version': '0.3',
     'category': 'Account',
     'description': """ Integración con factura electrónica de Mega Print """,
     'author': 'Eduardo Cortez Paz',
