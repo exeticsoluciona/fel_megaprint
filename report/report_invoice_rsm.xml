@@ -238,7 +238,9 @@
                                 </t>
                                 <t t-if="o.journal_id.tipo_documento_fel == 'FESP'">
 	                                <td class="text-right">
+                                                <t t-set="totalesp" t-value="0"/>
 		                                <t t-set="total_line" t-value="l.price_unit*l.quantity" />
+                                                <t t-set="totalesp" t-value="total+total_line"/>
 	                                    <!-- Q <span t-esc="l.price_unit*l.quantity" /> -->
 	                                    <span t-esc="total_line" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' />
 	                                </td>
@@ -272,7 +274,7 @@
                             </tr>
 
                             <tr style="border: 2px solid #979797 !important;">
-
+                            <t t-if="o.journal_id.tipo_documento_fel != 'FESP'">
 
                                     <td style="background-color:#fff !important; border-radius: 25px !important; color:#000 !important;">
                                         <strong>TOTAL:</strong>
@@ -280,6 +282,19 @@
                                     <td style="background-color:#fff !important; color:#000 !important;" class="text-right">
                                         <strong><span t-field="o.amount_total" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/></strong>
                                     </td>
+                            </t>
+
+                            <t t-if="o.journal_id.tipo_documento_fel == 'FESP'">
+
+                                    <td style="background-color:#fff !important; border-radius: 25px !important; color:#000 !important;">
+                                        <strong>TOTAL:</strong>
+                                    </td>
+                                    <td style="background-color:#fff !important; color:#000 !important;" class="text-right">
+                                        <strong><span t-field="totalesp" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/></strong>
+                                    </td>
+                            </t>
+
+
                             </tr>
                             <t t-if="o.journal_id.tipo_documento_fel == 'FESP'">
 
@@ -312,8 +327,11 @@
                     
                 </div>
 
+
                 <!-- Nota de credito -->
 	            <t t-if="o.journal_id.tipo_documento_fel == 'NCRE'">
+
+                <br/>
                     <div class="row">
                         <div class="col-12">
                             <table class="table table-sm" style=" table-layout:fixed;">
@@ -341,6 +359,7 @@
                 <!-- / Nota de credito -->
                 <!-- Exportacion -->
                 <t t-if="o.tipo_gasto == 'importacion'" >
+                <br/>
                     <div class="row">
                         <div class="col-12">
                             <table class="table table-sm" style=" table-layout:fixed;">
