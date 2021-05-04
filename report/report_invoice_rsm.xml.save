@@ -43,7 +43,7 @@
 	                    <div class="col-8 mb-32 text-center"></div>
 	                    <div class="col-4 mb-32 text-center" style="font-size:14px lucida-console,sans-serif !important; text-align:center;">
 		                    <table class="table table-sm" style=" table-layout:fixed; border: 2px !important; border-style: solid !important; border-color:#979797 !important;">
-			                    <thead style="font-size:15px;">
+			                    <thead style="font-size:14px;">
 				                    <tr>
 					                    <th width="20px" style="background-color:#dcdcdc !important; color:#000 !important; align: center; ">
                                         Documento Tributario Electrónico:
@@ -55,27 +55,20 @@
                                             <t t-if="o.journal_id.tipo_documento_fel == 'NCRE'">Nota de Crédito</t>
                                             <t t-if="o.contingencia_fel">
                                                 <br/><span>Emitido en Contingencia</span>
-                                            </t>
+                                            </>   
                                         </th>
 				                    </tr>
 			                    </thead>
 			                    <tbody style="font-size:14px;">
 				                    <tr>
                                         <td class="text-center" style="background-color:#fefefe !important;">
-                                 
-                                        <t t-if="o.contingencia_fel">
-                                        	<span style="font-size:13px; color:#6c6c6c;">NO. DE ACCESO:    </span>
-                                                <b><span style="font-size:14px; color:#bb3131;" t-field="o.uuid_contigencia"/></b>
-                                                <br/>
-                                        </t>
-					<t t-if="o.contingencia_fel == false">
-                                                <span style="font-size:13px; color:#6c6c6c;">SERIE:    </span>
-                                                <b><span style="font-size:14px; color:#bb3131;" t-field="o.serie_fel"/></b>
+
+                                                <span style="font-size:13px; color:#6c6c6c;">SERIE:</span>
+                                                <b><span style="font-size:16px; color:#bb3131;" t-field="o.serie_fel"/></b>
                                                 <br/>
                                                 <span style="font-size:13px; color:#6c6c6c;">NUMERO: </span>
-                                                <b><span style="font-size:14px; color:#bb3131;" t-field="o.numero_fel"/></b>
+                                                <b><span style="font-size:13px; color:#3b3b3b;" t-field="o.numero_fel"/></b>
                                                 <br/>
-                                        </t>
                                         </td>
                                     </tr>
 			                    </tbody>
@@ -441,19 +434,14 @@
 		            <table class="table table-sm table-bordered">
 		            	<tbody>
 		            		<tr>
-		            			<td colspan="6" class="text-center" style="font-size:12px;" >
-                                                        <strong><span>NUMERO INTERNO: </span><span style="font-size: 12px;" t-field="o.invoice_payment_ref"/></strong><br/>
-                                                <t t-if="o.contingencia_fel">
-							<span style="font-size: 12px;">Para descargar su documento tributario CERTIFICADO visite: <br/> 
-							<a href="https://portal.sat.gob.gt/portal/verificador-publico-de-dte/">https://portal.sat.gob.gt/portal/verificador-publico-de-dte/</a></span>
-                                                </t>
-						</td>
+		            			<td colspan="6" class="text-center" >
+                                                    <span style="font-size: 12px;">Para descargar su documento tributario CERTIFICADO visite: <br/> 
+                                                    <a href="https://portal.sat.gob.gt/portal/verificador-publico-de-dte/">https://portal.sat.gob.gt/portal/verificador-publico-de-dte/</a></span></td>
 			            		<td colspan="6" class="text-center" style="font-size: 12px;">
-							<span style="font-size: 13px;">CERTIFICADOR:  MEGAPRINT-FEL NIT: 5051023-1</span> <br/>
-                      					<t t-if="o.contingencia_fel == false">	
-								<strong><span> FIRMA:</span><span style="font-size: 12px;" t-field="o.firma_fel"/></strong> <br/>
-							</t>
-						</td>
+                                                    <span>NO. DE ACCESO: </span><span style="font-size: 12px;" t-field="o.uuid_contingencia"/><br/>
+                                                    <span>NO. INTERNO: </span><span style="font-size: 12px;" t-field="o.invoce_payment_ref"/> </td>
+                                                    <span style="font-size: 13px;">CERTIFICADOR:  MEGAPRINT-FEL NIT: 5051023-1</span> <br/>
+                                                    <span> FIRMA:</span><span style="font-size: 12px;" t-field="o.firma_fel"/>> </td>
 			            	</tr>
 		            	</tbody>
 		            </table>

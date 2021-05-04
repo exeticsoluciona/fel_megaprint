@@ -4,9 +4,9 @@
     'name': 'FEL Mega Print',
     'version': '0.3',
     'category': 'Account',
-    'description': """ Integración con factura electrónica de Mega Print """,
-    'author': 'Eduardo Cortez Paz',
-    'website': 'http://www.exeticsoluciona.com',
+    'description': """ Integra Odoo y factura electrónica con el CERTIFICADOR Mega Print, Genera DTO locales y DTO locales en contingencia """,
+    'author': 'Eduardo Cortez Paz, Allan Ramirez',
+    'website': 'https://www.exeticsoluciona.com',
     'depends': ['account','l10n_gt_extra'],
     'data': [
         'views/account_view.xml',

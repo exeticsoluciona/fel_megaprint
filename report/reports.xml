@@ -3,7 +3,7 @@
     <data>
          <report
             id="rsm_invoice_report"
-            string="Factura en Contingencia"
+            string="Documento Tributario Electrónico Local"
             model="account.move"
             report_type="qweb-pdf"
             name="fel_megaprint.modern_report_invoice"

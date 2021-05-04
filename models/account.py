@@ -18,13 +18,16 @@ import random
 
 class AccountInvoice(models.Model):
     _inherit = "account.move"
-
+    
     def button_draft(self):
+	    
+        #result = super(AccountInvoice, self)
+        
         for factura in self:
             if factura.estado_doc_fel == 'Activo':
-                raise UserError("No se puede cancelar o cambia a borrador una factura activa en FEL.")
-        return super(AccountInvoice, self).button_draft()
-
+                raise 	UserError("No se puede cancelar o cambia a borrador una factura activa en FEL.")
+        
+        return super(AccountInvoice, self).button_draft()    
     
     def invoice_fel(self):
                           
@@ -169,7 +172,12 @@ class AccountInvoice(models.Model):
                         #Url Solicita Token   
                         urlApiToken = factura.company_id.url_api_token_fel
                         if urlApiToken == False:
-                           urlApiToken = factura.company_id.dev_url_api_token_fel   
+                           urlApiToken = factura.company_id.dev_url_api_token_fel
+                        
+                        #Url PDF 
+                        urlApiPdf = factura.company_id.url_api_pdf_fel
+                        if urlApiPdf == False:
+                            urlApiPdf = factura.company_id.dev_url_api_pdf_fel
                                                            
                         logging.warn(xmls)
     
@@ -206,6 +214,15 @@ class AccountInvoice(models.Model):
                                     raise UserError(r.text)
                                 else: 
                                     factura.estado_doc_fel = 'Anulado'
+                                    headers = { "Content-Type": "application/xml", "authorization": "Bearer "+token }
+                                    data = '<?xml version="1.0" encoding="UTF-8"?><RetornaPDFRequest><uuid>{}</uuid></RetornaPDFRequest>'.format(factura.firma_fel)
+                                    r = requests.post(urlApiPdf, data=data, headers=headers)
+                                    resultadoXML = etree.XML(bytes(r.text, encoding='utf-8'))
+                                    if len(resultadoXML.xpath("//listado_errores")) == 0:
+                                        pdf = resultadoXML.xpath("//pdf")[0].text
+                                        factura.pdf_fel = pdf
+                                        pdfname = '{}.pdf'.format(factura.name)
+                                        factura.name_pdf_fel = pdfname
                             else:
                                 raise UserError(r.text)
                         else:

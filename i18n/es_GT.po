@@ -1,0 +1,592 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* fel_megaprint
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-04 20:15+0000\n"
+"PO-Revision-Date: 2021-05-04 14:16-0600\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es_GT\n"
+"X-Generator: Poedit 2.4.3\n"
+
+#. module: fel_megaprint
+#: model:ir.actions.report,print_report_name:fel_megaprint.rsm_invoice_report
+msgid "('Factura en Contingencia - %s' % (object.name))"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "<b>TOTAL EN LETRAS:</b>"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid ""
+"<br/>\n"
+"\t                    <span>NIT:</span>"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid ""
+"<br/>\n"
+"                                                <span style=\"font-size:13px; color:#6c6c6c;\">NUMERO: </span>"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid ""
+"<br/>\n"
+"                <br/>\n"
+"                <span style=\"color: #808080;\"><b>SUJETO A PAGOS TRIMESTRALES</b></span>"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "<br/><span>Emitido en Contingencia</span>"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "<span style=\"font-size: 13px;\">CERTIFICADOR:  MEGAPRINT-FEL NIT: 5051023-1</span> <br/>"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "<span style=\"font-size:13px; color:#6c6c6c;\">NO. DE ACCESO:    </span>"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "<span style=\"font-size:13px; color:#6c6c6c;\">SERIE:    </span>"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid ""
+"<span> \n"
+"&amp;nbsp;\n"
+" </span>"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "<span> FIRMA:</span>"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "<span><b>País:</b> </span>"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "<span>CF</span>"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "<span>NUMERO INTERNO: </span>"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "<strong>Comentarios:</strong>"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "<strong>TOTAL SIN RETENCIONES:</strong>"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "<strong>TOTAL:</strong>"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "CANTIDAD"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "CLIENTE:"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "COMPRADOR:"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "CONSIGNATARIO:"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "CUI:"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.invoice_form_fel_megaprint
+msgid "Cancelar FEL"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model,name:fel_megaprint.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: fel_megaprint
+#: model:ir.model.fields,field_description:fel_megaprint.field_account_move__comprador_fel
+msgid "Comprador FEL"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,field_description:fel_megaprint.field_account_move__consignatario_fel
+msgid "Consignatario o Destinatario FEL"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model,name:fel_megaprint.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.invoice_form_fel_megaprint
+msgid "Contingencia"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,field_description:fel_megaprint.field_res_partner__password_fel
+#: model:ir.model.fields,field_description:fel_megaprint.field_res_users__password_fel
+msgid "Contraseña del API de Mega Print"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,field_description:fel_megaprint.field_res_partner__codigo_establecimiento
+#: model:ir.model.fields,field_description:fel_megaprint.field_res_users__codigo_establecimiento
+msgid "Código Establecimiento FEL"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.view_partner_form_fel_fogara
+msgid "Código Establecimiento Fel"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,help:fel_megaprint.field_res_partner__codigo_establecimiento
+#: model:ir.model.fields,help:fel_megaprint.field_res_users__codigo_establecimiento
+msgid "Código que identifica al establecimiento."
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "DESC. (%)"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "DESCRIPCIÓN"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "DIRECCIÓN:"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.invoice_form_fel_megaprint
+msgid "Datos FEL"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,field_description:fel_megaprint.field_account_bank_statement_import_journal_creation__direccion_fel
+#: model:ir.model.fields,field_description:fel_megaprint.field_account_journal__direccion_fel
+msgid "Dirección Establecimiento Fel"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.actions.report,name:fel_megaprint.rsm_invoice_report
+msgid "Documento Tributario Electrónico Local"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "Documento Tributario Electrónico:"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "EXPORTADOR:"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,field_description:fel_megaprint.field_account_move__contingencia_fel
+msgid "Emision en contigencia."
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.actions.server,name:fel_megaprint.action_set_contingencia
+msgid "Enviar contingencia a certificar"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,field_description:fel_megaprint.field_account_move__estado_doc_fel
+msgid "Estado del documento"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,help:fel_megaprint.field_account_move__tipo_doc_fel
+msgid "Este campo indica el tipo de documento generado."
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,help:fel_megaprint.field_account_move__estado_doc_fel
+msgid ""
+"Este campo indicara el estado del documento electronico, Activa significa que el documento esta activo, "
+"Inactiva significa que el documento ha sido anulado."
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,field_description:fel_megaprint.field_account_move__exportador_fel
+msgid "Exportador FEL"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "FECHA EMISION:"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "FECHA VENCIMIENTO:"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.invoice_form_fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.view_company_form_fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.view_partner_form_fel_fogara
+msgid "FEL"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.journal_form_fel_megaprint
+msgid "FEL Configuración"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields.selection,name:fel_megaprint.selection__account_journal__tipo_documento_fel__fact
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "Factura"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields.selection,name:fel_megaprint.selection__account_journal__tipo_documento_fel__fcam
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "Factura Cambiaria"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields.selection,name:fel_megaprint.selection__account_journal__tipo_documento_fel__fesp
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "Factura Especial"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "Factura Original:"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,field_description:fel_megaprint.field_account_move__factura_org_id
+msgid "Factura original FEL"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.view_partner_form_fel_fogara
+msgid "Fegora"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,field_description:fel_megaprint.field_account_move__firma_fel
+msgid "Firma Fel"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,field_description:fel_megaprint.field_res_partner__frases_fel
+#: model:ir.model.fields,field_description:fel_megaprint.field_res_users__frases_fel
+msgid "Frases"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,help:fel_megaprint.field_account_move__pdf_fel
+msgid "Haciendo click en este enlace podra descargar el documento FEL generado"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "INCOTERM:"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,field_description:fel_megaprint.field_account_move__incoterm_fel
+msgid "Incoterm FEL"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model,name:fel_megaprint.model_account_journal
+msgid "Journal"
+msgstr "Diario"
+
+#. module: fel_megaprint
+#: model:ir.model,name:fel_megaprint.model_account_move
+msgid "Journal Entries"
+msgstr "Asientos contables"
+
+#. module: fel_megaprint
+#: model:ir.model.fields,help:fel_megaprint.field_res_partner__frases_fel
+#: model:ir.model.fields,help:fel_megaprint.field_res_users__frases_fel
+msgid ""
+"Las frases dependen del RTU de la empresa, para agregarlas debe separar por una coma (TipoFrase,"
+"CodigoEscenario) en caso de tener más de una frase precione Eneter e ingrese la nueva frase."
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,field_description:fel_megaprint.field_account_move__motivo_nota
+msgid "Motivo de Nota (Crédito o Débito)"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,field_description:fel_megaprint.field_account_move__motivo_anula_fel
+msgid "Motivo de anulación"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "Motivo:"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "NIT:"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,field_description:fel_megaprint.field_account_move__name_pdf_fel
+msgid "Nombre del Archivo PDF"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields.selection,name:fel_megaprint.selection__account_journal__tipo_documento_fel__nabn
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "Nota de Abono"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields.selection,name:fel_megaprint.selection__account_journal__tipo_documento_fel__ncre
+msgid "Nota de Credito"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "Nota de Crédito"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields.selection,name:fel_megaprint.selection__account_journal__tipo_documento_fel__ndeb
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "Nota de Debito"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,field_description:fel_megaprint.field_account_move__numero_fel
+msgid "Numero Fel"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,field_description:fel_megaprint.field_account_move__uuid_contigencia
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.invoice_tree_fel_megaprint
+msgid "Numero de acceso"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,help:fel_megaprint.field_account_move__uuid_contigencia
+msgid "Numero de acceso para facturar en contingencia."
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,field_description:fel_megaprint.field_account_move__pdf_fel
+#: model:ir.model.fields,field_description:fel_megaprint.field_account_move__pdf_uri
+msgid "PDF Fel"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "PRECIO UNI."
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "Para descargar su documento tributario CERTIFICADO visite: <br/>"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.invoice_tree_fel_megaprint
+msgid "Referencia"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,field_description:fel_megaprint.field_account_move__serie_fel
+msgid "Serie Fel"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,help:fel_megaprint.field_account_move__motivo_anula_fel
+msgid ""
+"Si desea anular un documento FEL previamente validado, deberá cambiar la factura a estado borrador, luego "
+"deberá escribir en este campo el motivo de la anulación del documento para por último hacer clic en el botón "
+"cancelar ."
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,help:fel_megaprint.field_account_move__motivo_nota
+msgid ""
+"Si emite una nota de credito, nota de débito o nota de abono es de caracter obligatorio que escriba el motivo "
+"para la creación de este documento"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "TOTAL"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,field_description:fel_megaprint.field_account_bank_statement_import_journal_creation__tipo_documento_fel
+#: model:ir.model.fields,field_description:fel_megaprint.field_account_journal__tipo_documento_fel
+msgid "Tipo de Documento FEL"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,field_description:fel_megaprint.field_account_move__tipo_doc_fel
+msgid "Tipo documento"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,field_description:fel_megaprint.field_res_company__url_api_fel
+msgid "URL del API Crea DTE"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,field_description:fel_megaprint.field_res_company__url_api_firma_fel
+msgid "URL del API Firma DTE"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,field_description:fel_megaprint.field_res_company__url_api_pdf_fel
+msgid "URL del API Genera PDF"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,field_description:fel_megaprint.field_res_company__url_api_token_fel
+msgid "URL del API Solicita Token DTE"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,field_description:fel_megaprint.field_res_company__url_api_anula_fel
+msgid "URL del API anula DTE"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,field_description:fel_megaprint.field_res_company__dev_url_api_fel
+msgid "URL del API dev_ Crea DTE"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,field_description:fel_megaprint.field_res_company__dev_url_api_firma_fel
+msgid "URL del API dev_ Firma DTE"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,field_description:fel_megaprint.field_res_company__dev_url_api_pdf_fel
+msgid "URL del API dev_ Genera PDF"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,field_description:fel_megaprint.field_res_company__dev_url_api_token_fel
+msgid "URL del API dev_ Solicita Token DTE"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,field_description:fel_megaprint.field_res_company__dev_url_api_anula_fel
+msgid "URL del API dev_ anula DTE"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,help:fel_megaprint.field_res_company__dev_url_api_anula_fel
+#: model:ir.model.fields,help:fel_megaprint.field_res_company__url_api_anula_fel
+msgid "URL del API que se consume para anular los documentos FEL."
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,help:fel_megaprint.field_res_company__dev_url_api_pdf_fel
+#: model:ir.model.fields,help:fel_megaprint.field_res_company__url_api_pdf_fel
+msgid "URL del API que se consume para generar archivo PDF."
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,help:fel_megaprint.field_res_company__dev_url_api_firma_fel
+#: model:ir.model.fields,help:fel_megaprint.field_res_company__url_api_firma_fel
+msgid "URL del API que se consume para generar firmar documento FEL."
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,help:fel_megaprint.field_res_company__dev_url_api_fel
+#: model:ir.model.fields,help:fel_megaprint.field_res_company__url_api_fel
+msgid "URL del API que se consume para generar los documentos FEL."
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,help:fel_megaprint.field_res_company__dev_url_api_token_fel
+#: model:ir.model.fields,help:fel_megaprint.field_res_company__url_api_token_fel
+msgid "URL del API que se consume para solictar token."
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,field_description:fel_megaprint.field_res_partner__username_fel
+#: model:ir.model.fields,field_description:fel_megaprint.field_res_users__username_fel
+msgid "Usuario del API de Mega Print"
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.model.fields,help:fel_megaprint.field_account_move__pdf_uri
+msgid "Valida PDF."
+msgstr ""
+
+#. module: fel_megaprint
+#: model:ir.actions.server,name:fel_megaprint.cron_contingecia_fel_megaprint_ir_actions_server
+#: model:ir.cron,cron_name:fel_megaprint.cron_contingecia_fel_megaprint
+#: model:ir.cron,name:fel_megaprint.cron_contingecia_fel_megaprint
+msgid "account.move.cron_megaprint"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.modern_report_invoice_document
+msgid "https://portal.sat.gob.gt/portal/verificador-publico-de-dte/"
+msgstr ""
+
+#. module: fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.journal_form_fel_megaprint
+#: model_terms:ir.ui.view,arch_db:fel_megaprint.view_company_form_fel_megaprint
+msgid "megaprint"
+msgstr ""
