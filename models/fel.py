@@ -277,21 +277,30 @@ class FelMegaprint(models.Model):
             Descuento.text = '{:.6f}'.format(descuento)
             
             #if len(linea.tax_ids) > 0:
-            Impuestos = etree.SubElement(Item, DTE_NS+"Impuestos")
-            Impuesto = etree.SubElement(Impuestos, DTE_NS+"Impuesto")
-            NombreCorto = etree.SubElement(Impuesto, DTE_NS+"NombreCorto")
-            NombreCorto.text = "IVA"
-            CodigoUnidadGravable = etree.SubElement(Impuesto, DTE_NS+"CodigoUnidadGravable")
-            CodigoUnidadGravable.text = "1"
-                
-                #if factura.tipo_gasto == 'importacion':
-            if float_is_zero(total_impuestos, precision_rounding=factura.currency_id.rounding):
-                CodigoUnidadGravable.text = "2"
-                
-            MontoGravable = etree.SubElement(Impuesto, DTE_NS+"MontoGravable")
-            MontoGravable.text = '{:.2f}'.format(factura.currency_id.round(total_linea_base))
-            MontoImpuesto = etree.SubElement(Impuesto, DTE_NS+"MontoImpuesto")
-            MontoImpuesto.text = '{:.2f}'.format(factura.currency_id.round(total_impuestos))
+
+            if tipo_documento_fel not in ['NABN']:
+                Impuestos = etree.SubElement(Item, DTE_NS + 'Impuestos')
+                Impuesto = etree.SubElement(Impuestos, DTE_NS
+                                            + 'Impuesto')
+                NombreCorto = etree.SubElement(Impuesto, DTE_NS
+                                               + 'NombreCorto')
+                NombreCorto.text = 'IVA'
+                CodigoUnidadGravable = etree.SubElement(Impuesto,
+                                                        DTE_NS + 'CodigoUnidadGravable')
+                CodigoUnidadGravable.text = '1'
+                # if factura.tipo_gasto == 'importacion':
+                if float_is_zero(total_impuestos,
+                                 precision_rounding=factura.currency_id.rounding):
+                    CodigoUnidadGravable.text = '2'
+                MontoGravable = etree.SubElement(Impuesto, DTE_NS
+                                                 + 'MontoGravable')
+                MontoGravable.text = \
+                    '{:.2f}'.format(factura.currency_id.round(total_linea_base))
+                MontoImpuesto = etree.SubElement(Impuesto, DTE_NS
+                                                 + 'MontoImpuesto')
+                MontoImpuesto.text = \
+                    '{:.2f}'.format(factura.currency_id.round(total_impuestos))
+
             #/ len(linea.tax_ids) > 0:
             
             Total = etree.SubElement(Item, DTE_NS+"Total")
@@ -304,8 +313,13 @@ class FelMegaprint(models.Model):
         Totales = etree.SubElement(DatosEmision, DTE_NS+"Totales")
         
         #if cantidad_impuestos > 0:
-        TotalImpuestos = etree.SubElement(Totales, DTE_NS+"TotalImpuestos")
-        TotalImpuesto = etree.SubElement(TotalImpuestos, DTE_NS+"TotalImpuesto", NombreCorto="IVA", TotalMontoImpuesto='{:.2f}'.format(factura.currency_id.round(gran_total_impuestos)))
+        if tipo_documento_fel not in ['NABN']:
+            TotalImpuestos = etree.SubElement(Totales, DTE_NS
+                                              + 'TotalImpuestos')
+            TotalImpuesto = etree.SubElement(TotalImpuestos, DTE_NS
+                                             + 'TotalImpuesto', NombreCorto='IVA',
+                                             TotalMontoImpuesto='{:.2f}'.format(
+                                                 factura.currency_id.round(gran_total_impuestos)))
         # /cantidad_impuestos > 0
         
         GranTotal = etree.SubElement(Totales, DTE_NS+"GranTotal")
