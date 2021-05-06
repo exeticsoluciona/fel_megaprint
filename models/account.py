@@ -185,7 +185,7 @@ class AccountInvoice(models.Model):
                         data = '<?xml version="1.0" encoding="UTF-8"?><SolicitaTokenRequest><usuario>{}</usuario><apikey>{}</apikey></SolicitaTokenRequest>'.format(factura.journal_id.direccion_fel.username_fel, factura.journal_id.direccion_fel.password_fel)
                         r = {}
                         try:
-                            r = requests.post('https://dev2.api.ifacere-fel.com/api/solicitarToken', data=data.encode('utf-8'), headers=headers)
+                            r = requests.post(urlApiToken, data=data.encode('utf-8'), headers=headers)
                         except:
                             raise UserError("No hay conexión al servicio web de Mega Print.")
                             
@@ -198,7 +198,7 @@ class AccountInvoice(models.Model):
                             headers = { "Content-Type": "application/xml", "authorization": "Bearer "+token }
                             data = '<?xml version="1.0" encoding="UTF-8"?><FirmaDocumentoRequest id="{}"><xml_dte><![CDATA[{}]]></xml_dte></FirmaDocumentoRequest>'.format(uuid_factura, xmls)
                             logging.warn(data)
-                            r = requests.post('https://dev.api.soluciones-mega.com/api/solicitaFirma', data=data.encode('utf-8'), headers=headers)
+                            r = requests.post(urlApiFirma, data=data.encode('utf-8'), headers=headers)
                             logging.warn(r.text)
                             resultadoXML = etree.XML(bytes(r.text, encoding='utf-8'))
                             if len(resultadoXML.xpath("//xml_dte")) > 0:
@@ -207,7 +207,7 @@ class AccountInvoice(models.Model):
                                 headers = { "Content-Type": "application/xml", "authorization": "Bearer "+token }
                                 data = '<?xml version="1.0" encoding="UTF-8"?><AnulaDocumentoXMLRequest id="{}"><xml_dte><![CDATA[{}]]></xml_dte></AnulaDocumentoXMLRequest>'.format(uuid_factura, xml_con_firma)
                                 logging.warn(data)
-                                r = requests.post('https://dev2.api.ifacere-fel.com/api/anularDocumentoXML', data=data.encode('utf-8'), headers=headers)
+                                r = requests.post(urlApi, data=data.encode('utf-8'), headers=headers)
                                 resultadoXML = etree.XML(bytes(r.text, encoding='utf-8'))
     
                                 if len(resultadoXML.xpath("//listado_errores")) > 0:
