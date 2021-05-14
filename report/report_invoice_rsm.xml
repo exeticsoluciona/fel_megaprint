@@ -268,11 +268,13 @@
                 <span style="color: #808080;"><b>SUJETO A PAGOS TRIMESTRALES</b></span>
                 <div class="row" style="padding-top:20px; font-size:14px;">
 	                <div class="col-8">
-                        <table class="table table-sm">
+                        <table class="table table-sm" style="text-transform: uppercase;">
                                 <tr>
-                                    <!--<t t-if="o.currency_id.name == 'GTQ'">-->
-                                        <td colspan="2"><b>TOTAL EN LETRAS:</b> <span t-esc="o.amount_to_text1()"/></td>
-                                    <!--</t>-->
+                                  
+                                        <td colspan="2"><b>TOTAL EN LETRAS:</b><span> <![CDATA[
+&nbsp;
+]]> </span> <i><span t-esc="o.amount_to_text1()"/></i></td>
+                                    
                                 </tr>
                         </table>
 	                </div>
