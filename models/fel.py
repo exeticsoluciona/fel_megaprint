@@ -199,11 +199,11 @@ class FelMegaprint(models.Model):
 
         DireccionReceptor = etree.SubElement(Receptor, DTE_NS+"DireccionReceptor")
         Direccion = etree.SubElement(DireccionReceptor, DTE_NS+"Direccion")
-        Direccion.text = (factura.partner_id.street or 'Ciudada') + ' ' + (factura.partner_id.street2 or 'Ciudad')
+        Direccion.text = (factura.partner_id.street or ' ') + ' ' + (factura.partner_id.street2 or ' ')
         CodigoPostal = etree.SubElement(DireccionReceptor, DTE_NS+"CodigoPostal")
-        CodigoPostal.text = factura.partner_id.zip or '01001'
+        CodigoPostal.text = factura.partner_id.zip or ' '
         Municipio = etree.SubElement(DireccionReceptor, DTE_NS+"Municipio")
-        Municipio.text = factura.partner_id.city or 'Guatemala'
+        Municipio.text = factura.partner_id.city or 'Ciudad'
         Departamento = etree.SubElement(DireccionReceptor, DTE_NS+"Departamento")
         Departamento.text = factura.partner_id.state_id.name if factura.partner_id.state_id else 'Guatemala'
         Pais = etree.SubElement(DireccionReceptor, DTE_NS+"Pais")
