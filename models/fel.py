@@ -180,7 +180,7 @@ class FelMegaprint(models.Model):
         Municipio = etree.SubElement(DireccionEmisor, DTE_NS+"Municipio")
         Municipio.text = factura.journal_id.direccion_fel.city or 'Guatemala'
         Departamento = etree.SubElement(DireccionEmisor, DTE_NS+"Departamento")
-        Departamento.text = factura.journal_id.direccion_fel.state_id.name if factura.journal_id.direccion_fel.state_id else ''
+        Departamento.text = factura.journal_id.direccion_fel.state_id.name if factura.journal_id.direccion_fel.state_id else 'Guatemala'
         Pais = etree.SubElement(DireccionEmisor, DTE_NS+"Pais")
         Pais.text = factura.journal_id.direccion_fel.country_id.code or 'GT'
 
@@ -199,9 +199,9 @@ class FelMegaprint(models.Model):
 
         DireccionReceptor = etree.SubElement(Receptor, DTE_NS+"DireccionReceptor")
         Direccion = etree.SubElement(DireccionReceptor, DTE_NS+"Direccion")
-        Direccion.text = (factura.partner_id.street or ' ') + ' ' + (factura.partner_id.street2 or ' ')
+        Direccion.text = (factura.partner_id.street or 'Ciudad') + ' ' + (factura.partner_id.street2 or ' ')
         CodigoPostal = etree.SubElement(DireccionReceptor, DTE_NS+"CodigoPostal")
-        CodigoPostal.text = factura.partner_id.zip or ' '
+        CodigoPostal.text = factura.partner_id.zip or '01001'
         Municipio = etree.SubElement(DireccionReceptor, DTE_NS+"Municipio")
         Municipio.text = factura.partner_id.city or 'Ciudad'
         Departamento = etree.SubElement(DireccionReceptor, DTE_NS+"Departamento")
