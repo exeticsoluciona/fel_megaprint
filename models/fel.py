@@ -209,7 +209,8 @@ class FelMegaprint(models.Model):
         Pais = etree.SubElement(DireccionReceptor, DTE_NS+"Pais")
         Pais.text = factura.partner_id.country_id.code or 'GT'
 
-        if tipo_documento_fel not in ['NDEB', 'NCRE', 'RECI', 'NABN', 'FESP']:
+        #if tipo_documento_fel not in ['NDEB', 'NCRE', 'RECI', 'NABN', 'FESP']: ##ALLAN QUITE NOTA DE CREDITO
+        if tipo_documento_fel not in ['NDEB', 'RECI', 'NABN', 'FESP']:
             ElementoFrases = etree.Element(DTE_NS+"Frases")
             if factura.journal_id.direccion_fel.frases_fel:
                 frasesList = str(factura.journal_id.direccion_fel.frases_fel).splitlines()
