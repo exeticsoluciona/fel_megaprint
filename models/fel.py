@@ -56,6 +56,19 @@ class FelMegaprint(models.Model):
     comprador_fel = fields.Many2one('res.partner', string="Comprador FEL")
     exportador_fel = fields.Many2one('res.partner', string="Exportador FEL")
     incoterm_fel = fields.Char(string="Incoterm FEL")
+    codigo_escenario  = fields.Char(
+        string='Codigo de escenario FEL',
+        help="Si desea agregar una frase el documento agregara este valor para enviarlo al certificador.",
+        readonly=True, 
+        states={'draft': [('readonly', False)]}
+    )
+    tipo_frase  = fields.Char(
+        string='Tipo de frase FEL',
+        help="Si desea agregar una frase el documento agregara este valor para enviarlo al certificador.",
+        readonly=True, 
+        states={'draft': [('readonly', False)]},
+        attrs={'required':[('codigo_escenario','!=',False)]}
+    )
 
     def amount_to_text1(self):
         
@@ -209,28 +222,20 @@ class FelMegaprint(models.Model):
         Pais = etree.SubElement(DireccionReceptor, DTE_NS+"Pais")
         Pais.text = factura.partner_id.country_id.code or 'GT'
 
-        #if tipo_documento_fel not in ['NDEB', 'NCRE', 'RECI', 'NABN', 'FESP']: ##ALLAN QUITE NOTA DE CREDITO
-        if tipo_documento_fel not in ['NDEB', 'RECI', 'NABN', 'FESP']:
+        #not in ['NDEB', 'NCRE', 'RECI', 'NABN', 'FESP']
+        if tipo_documento_fel not in ['RECI', 'NABN', 'FESP','NDEB','NCRE'] or (factura.tipo_frase and factura.codigo_escenario) or factura.tipo_gasto =='importacion': 
             ElementoFrases = etree.Element(DTE_NS+"Frases")
-            if factura.journal_id.direccion_fel.frases_fel:
+            if factura.journal_id.direccion_fel.frases_fel and tipo_documento_fel not in ['NDEB', 'NCRE']:
                 frasesList = str(factura.journal_id.direccion_fel.frases_fel).splitlines()
                 for fraseItem in frasesList:
                     item = str(fraseItem).split(",")
                     ElementoFrase = etree.SubElement(ElementoFrases,DTE_NS+"Frase", TipoFrase=item[0], CodigoEscenario=item[1] )             
-            #ElementoFrases = etree.fromstring(factura.company_id.frases_fel)
-            """if factura.company_id.frases_fel==False:
-                raise UserError('Frases no configuradas.')
-            frases_valor = factura.company_id.frases_fel.split(",")
-            
-            ElementoFrases = etree.Element(DTE_NS+"Frases")
-            ElementoFrase = etree.SubElement(ElementoFrases,DTE_NS+"Frase", TipoFrase=frases_valor[0], CodigoEscenario=frases_valor[1] )"""
-            
-            """ElementoFrases = etree.Element(DTE_NS+"Frases")
-            ElementoFrase = etree.SubElement(ElementoFrases,DTE_NS+"Frase", TipoFrase="1", CodigoEscenario="1" )
-            DatosEmision.append(ElementoFrases)"""   
-                           
+
+            if factura.tipo_frase and factura.codigo_escenario:
+                Frase1 = etree.SubElement(ElementoFrases, DTE_NS+"Frase", CodigoEscenario=factura.codigo_escenario, TipoFrase=factura.tipo_frase)
+
             if factura.tipo_gasto == 'importacion':
-                Frase = etree.SubElement(ElementoFrases, DTE_NS+"Frase", CodigoEscenario="1", TipoFrase="4")
+                Frase2 = etree.SubElement(ElementoFrases, DTE_NS+"Frase", CodigoEscenario="1", TipoFrase="4")
             
             DatosEmision.append(ElementoFrases)
             
@@ -353,6 +358,24 @@ class FelMegaprint(models.Model):
                 NombreExportador.text = factura.exportador_fel.name if factura.exportador_fel else "-"
                 CodigoExportador = etree.SubElement(Exportacion, CEX_NS+"CodigoExportador")
                 CodigoExportador.text = factura.exportador_fel.ref or "-" if factura.exportador_fel else "-"
+
+            if tipo_documento_fel in ['NCRE'] and factura.factura_org_id.tipo_gasto == 'importacion':
+                Complemento = etree.SubElement(Complementos, DTE_NS+"Complemento", IDComplemento="text", NombreComplemento="text", URIComplemento="text")
+                Exportacion = etree.SubElement(Complemento, CEX_NS+"Exportacion", Version="1", nsmap=NSMAP_EXP)
+                NombreConsignatarioODestinatario = etree.SubElement(Exportacion, CEX_NS+"NombreConsignatarioODestinatario")
+                NombreConsignatarioODestinatario.text = factura.factura_org_id.consignatario_fel.name if factura.factura_org_id.consignatario_fel else "-"
+                DireccionConsignatarioODestinatario = etree.SubElement(Exportacion, CEX_NS+"DireccionConsignatarioODestinatario")
+                DireccionConsignatarioODestinatario.text = factura.factura_org_id.consignatario_fel.street or "-" if factura.factura_org_id.consignatario_fel else "-"
+                NombreComprador = etree.SubElement(Exportacion, CEX_NS+"NombreComprador")
+                NombreComprador.text = factura.comprador_fel.name if factura.comprador_fel else "-"
+                DireccionComprador = etree.SubElement(Exportacion, CEX_NS+"DireccionComprador")
+                DireccionComprador.text = factura.factura_org_id.comprador_fel.street or "-" if factura.factura_org_id.comprador_fel else "-"
+                INCOTERM = etree.SubElement(Exportacion, CEX_NS+"INCOTERM")
+                INCOTERM.text = factura.factura_org_id.invoice_incoterm_id.code or "-"
+                NombreExportador = etree.SubElement(Exportacion, CEX_NS+"NombreExportador")
+                NombreExportador.text = factura.factura_org_id.exportador_fel.name if factura.factura_org_id.exportador_fel else "-"
+                CodigoExportador = etree.SubElement(Exportacion, CEX_NS+"CodigoExportador")
+                CodigoExportador.text = factura.factura_org_id.exportador_fel.ref or "-" if factura.factura_org_id.exportador_fel else "-"
 
             if tipo_documento_fel in ['FESP']:
                 total_isr = abs(factura.amount_tax)

@@ -28,6 +28,10 @@
 									<field name="uuid_contigencia" attrs="{'readonly': [('state','!=','draft')]}" />
 								</group>
 								<group>
+									<field name="codigo_escenario" />
+									<field name="tipo_frase" />
+								</group>
+								<group>
 			                        <field name="consignatario_fel" attrs="{'invisible': [('tipo_gasto','!=','importacion')]}"/>
 			                        <field name="comprador_fel" attrs="{'invisible': [('tipo_gasto','!=','importacion')]}"/>
 			                        <field name="exportador_fel" attrs="{'invisible': [('tipo_gasto','!=','importacion')]}"/>
