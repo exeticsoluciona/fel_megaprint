@@ -10,3 +10,5 @@ class Partner(models.Model):
     password_fel = fields.Char('Contraseña del API de Mega Print', copy=False)
     codigo_establecimiento = fields.Char('Código Establecimiento FEL', copy=False, help = "Código que identifica al establecimiento.")
     frases_fel = fields.Text('Frases', copy=False, help="Las frases dependen del RTU de la empresa, para agregarlas debe separar por una coma (TipoFrase,CodigoEscenario) en caso de tener más de una frase precione Eneter e ingrese la nueva frase.")
+    cui_por_nit = fields.Boolean(string="Facturar con CUI")
+    nombre_facturacion_fel = fields.Char(string="Nombre Facturacion FEL")

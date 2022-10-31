@@ -96,10 +96,12 @@ class FelMegaprint(models.Model):
         if tipo_documento_fel in ['FACT', 'FACM'] and factura.type == 'out_refund':
             tipo_documento_fel = 'NCRE'
 
-        nit_receptor = 'CF'
+        nit_receptor = ''
         if factura.partner_id.vat:
-            nit_receptor = factura.partner_id.vat.replace('-','')
+            nit_receptor = factura.partner_id.vat.replace('-', '')
         if tipo_documento_fel == "FESP" and factura.partner_id.cui:
+            nit_receptor = factura.partner_id.cui
+        if factura.partner_id.cui_por_nit and factura.partner_id.cui:
             nit_receptor = factura.partner_id.cui
         
         motivo_anulacion = 'Error'
@@ -197,18 +199,27 @@ class FelMegaprint(models.Model):
         Pais = etree.SubElement(DireccionEmisor, DTE_NS+"Pais")
         Pais.text = factura.journal_id.direccion_fel.country_id.code or 'GT'
 
-        nit_receptor = 'CF'
+        nit_receptor = ''
         if factura.partner_id.vat:
-            nit_receptor = factura.partner_id.vat.replace('-','')
+            nit_receptor = factura.partner_id.vat.replace('-', '')
         if tipo_documento_fel == "FESP" and factura.partner_id.cui:
             nit_receptor = factura.partner_id.cui
+        if factura.partner_id.cui_por_nit  and factura.partner_id.cui:
+            nit_receptor = factura.partner_id.cui
+
         Receptor = etree.SubElement(DatosEmision, DTE_NS+"Receptor", IDReceptor=nit_receptor, NombreReceptor=factura.partner_id.name)
-        if factura.partner_id.name:
-            Receptor.attrib['NombreReceptor'] = factura.partner_id.name
+
+        if factura.partner_id.nombre_facturacion_fel:
+            Receptor.attrib['NombreReceptor'] = factura.partner_id.nombre_facturacion_fel
         if factura.partner_id.email:
             Receptor.attrib['CorreoReceptor'] = factura.partner_id.email
         if tipo_documento_fel == "FESP" and factura.partner_id.cui:
             Receptor.attrib['TipoEspecial'] = "CUI"
+        if factura.partner_id.cui_por_nit and factura.partner_id.cui:
+            Receptor.attrib['TipoEspecial'] = "CUI"
+        if tipo_documento_fel == "FESP" and factura.partner_id.country_id.code != 'GT':
+            Receptor.attrib['TipoEspecial'] = "EXT"
+
 
         DireccionReceptor = etree.SubElement(Receptor, DTE_NS+"DireccionReceptor")
         Direccion = etree.SubElement(DireccionReceptor, DTE_NS+"Direccion")
@@ -222,22 +233,36 @@ class FelMegaprint(models.Model):
         Pais = etree.SubElement(DireccionReceptor, DTE_NS+"Pais")
         Pais.text = factura.partner_id.country_id.code or 'GT'
 
-        #not in ['NDEB', 'NCRE', 'RECI', 'NABN', 'FESP']
-        if tipo_documento_fel not in ['RECI', 'NABN', 'FESP','NDEB','NCRE'] or (factura.tipo_frase and factura.codigo_escenario) or factura.tipo_gasto =='importacion': 
-            ElementoFrases = etree.Element(DTE_NS+"Frases")
-            if factura.journal_id.direccion_fel.frases_fel and tipo_documento_fel not in ['NDEB', 'NCRE']:
-                frasesList = str(factura.journal_id.direccion_fel.frases_fel).splitlines()
-                for fraseItem in frasesList:
-                    item = str(fraseItem).split(",")
-                    ElementoFrase = etree.SubElement(ElementoFrases,DTE_NS+"Frase", TipoFrase=item[0], CodigoEscenario=item[1] )             
+        if datetime.now().isoformat() < '2022-11-01':
+            if tipo_documento_fel not in ['NABN', 'FESP','NDEB','NCRE'] or (factura.tipo_frase and factura.codigo_escenario) or factura.tipo_gasto =='importacion':
+                ElementoFrases = etree.Element(DTE_NS+"Frases")
+                if factura.journal_id.direccion_fel.frases_fel and tipo_documento_fel not in ['NDEB', 'NCRE']:
+                    frasesList = str(factura.journal_id.direccion_fel.frases_fel).splitlines()
+                    for fraseItem in frasesList:
+                        item = str(fraseItem).split(",")
+                        ElementoFrase = etree.SubElement(ElementoFrases,DTE_NS+"Frase", TipoFrase=item[0], CodigoEscenario=item[1] )
+                if factura.tipo_frase and factura.codigo_escenario:
+                    Frase1 = etree.SubElement(ElementoFrases, DTE_NS+"Frase", CodigoEscenario=factura.codigo_escenario, TipoFrase=factura.tipo_frase)
+                if factura.tipo_gasto == 'importacion':
+                    Frase2 = etree.SubElement(ElementoFrases, DTE_NS+"Frase", CodigoEscenario="1", TipoFrase="4")
+                DatosEmision.append(ElementoFrases)
 
-            if factura.tipo_frase and factura.codigo_escenario:
-                Frase1 = etree.SubElement(ElementoFrases, DTE_NS+"Frase", CodigoEscenario=factura.codigo_escenario, TipoFrase=factura.tipo_frase)
-
-            if factura.tipo_gasto == 'importacion':
-                Frase2 = etree.SubElement(ElementoFrases, DTE_NS+"Frase", CodigoEscenario="1", TipoFrase="4")
-            
-            DatosEmision.append(ElementoFrases)
+        if datetime.now().isoformat() >= '2022-11-01':
+            if tipo_documento_fel not in ['NABN', 'FESP'] or (
+                    factura.tipo_frase and factura.codigo_escenario) or factura.tipo_gasto == 'importacion':
+                ElementoFrases = etree.Element(DTE_NS + "Frases")
+                if factura.journal_id.direccion_fel.frases_fel:
+                    frasesList = str(factura.journal_id.direccion_fel.frases_fel).splitlines()
+                    for fraseItem in frasesList:
+                        item = str(fraseItem).split(",")
+                        ElementoFrase = etree.SubElement(ElementoFrases, DTE_NS + "Frase", TipoFrase=item[0],
+                                                         CodigoEscenario=item[1])
+                if factura.tipo_frase and factura.codigo_escenario:
+                    Frase1 = etree.SubElement(ElementoFrases, DTE_NS + "Frase",
+                                              CodigoEscenario=factura.codigo_escenario, TipoFrase=factura.tipo_frase)
+                if factura.tipo_gasto == 'importacion':
+                    Frase2 = etree.SubElement(ElementoFrases, DTE_NS + "Frase", CodigoEscenario="1", TipoFrase="4")
+                DatosEmision.append(ElementoFrases)
             
 
         Items = etree.SubElement(DatosEmision, DTE_NS+"Items")
