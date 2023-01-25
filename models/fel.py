@@ -213,11 +213,15 @@ class FelMegaprint(models.Model):
             Receptor.attrib['NombreReceptor'] = factura.partner_id.nombre_facturacion_fel
         if factura.partner_id.email:
             Receptor.attrib['CorreoReceptor'] = factura.partner_id.email
+
+        if len(nit_receptor) > 9:
+            Receptor.attrib['TipoEspecial'] = "CUI"
         if tipo_documento_fel == "FESP" and factura.partner_id.cui:
             Receptor.attrib['TipoEspecial'] = "CUI"
         if factura.partner_id.cui_por_nit and factura.partner_id.cui:
             Receptor.attrib['TipoEspecial'] = "CUI"
-        if tipo_documento_fel == "FESP" and factura.partner_id.country_id.code != 'GT':
+        if tipo_documento_fel in ["FESP", "FACT",
+                                  "FCAM"] and factura.partner_id.country_id and factura.partner_id.country_id.code != 'GT':
             Receptor.attrib['TipoEspecial'] = "EXT"
 
 
