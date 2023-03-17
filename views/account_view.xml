@@ -58,7 +58,7 @@
 			<field name="arch" type="xml">
 				<data>
 					<notebook position = "inside" >
-						<page string="FEL Configuración">
+						<page string="Configuración FEL">
 							<group string="megaprint">
 								<field name="tipo_documento_fel" attrs="{'invisible':[('type', '!=', 'sale'),('type', '!=', 'sale_refund'), ('type', '!=', 'purchase')]}" />
 								<field name="direccion_fel" attrs="{'invisible':[('type', '!=', 'sale'),('type', '!=', 'sale_refund'), ('type', '!=', 'purchase')]}" />
@@ -92,7 +92,7 @@
 				<data>
 					<notebook position="inside">
 						<page string="FEL">
-							<group string="megaprint">
+							<group string="Rutas API Megaprint">
 								<group>
 									<field name="url_api_fel" />
 									<field name="url_api_token_fel" />
