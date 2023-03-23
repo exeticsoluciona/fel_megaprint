@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-         <report
-            id="rsm_invoice_report"
-            string="Documento Tributario Electrónico Local"
-            model="account.move"
-            report_type="qweb-pdf"
-            name="fel_megaprint.modern_report_invoice"
-            print_report_name="('Factura en Contingencia - %s' % (object.name))"
-            groups="account.group_account_invoice"/>
+
+        <record id="rsm_invoice_report" model="ir.actions.report">
+            <field name="name">Documento Tributario Electrónico Local</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">fel_megaprint.modern_report_invoice</field>
+            <field name="report_file">fel_megaprint.modern_report_invoice</field>
+            <field name="print_report_name">('Factura en Contingencia - %s' % (object.name))</field>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="binding_type">report</field>
+            <field name="groups_id" eval="[(4, ref('account.group_account_invoice'))]"/>
+        </record>
     </data>
 </odoo>
