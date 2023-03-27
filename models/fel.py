@@ -241,7 +241,7 @@ class FelMegaprint(models.Model):
         if factura.partner_id.cui_por_nit and factura.partner_id.cui:
             Receptor.attrib['TipoEspecial'] = "CUI"
         if factura.partner_id.country_id and factura.partner_id.country_id.code != 'GT':
-            Receptor.attrib['TipoEspecial'] = "EXT
+            Receptor.attrib['TipoEspecial'] = "EXT"
 
         DireccionReceptor = etree.SubElement(Receptor, DTE_NS + "DireccionReceptor")
         Direccion = etree.SubElement(DireccionReceptor, DTE_NS + "Direccion")
