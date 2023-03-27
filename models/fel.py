@@ -33,7 +33,7 @@ class FelMegaprint(models.Model):
                             help="Haciendo click en este enlace podra descargar el documento FEL generado",
                             readonly=True, states={'draft': [('readonly', False)]})
     name_pdf_fel = fields.Char('Nombre del Archivo PDF', default='fel.pdf', size=32)
-    pdf_uri = fields.Char('PDF Fel', copy=False,
+    pdf_uri = fields.Char('PDF Fels', copy=False,
                           help="Valida PDF.",
                           readonly=True, states={'draft': [('readonly', True)]})
     uuid_contigencia = fields.Char('Numero de acceso', copy=False,
@@ -63,14 +63,19 @@ class FelMegaprint(models.Model):
         readonly=True,
         states={'draft': [('readonly', False)]}
     )
+    # tipo_frase = fields.Char(
+    #     string='Tipo de frase FEL',
+    #     help="Si desea agregar una frase el documento agregara este valor para enviarlo al certificador.",
+    #     readonly=True,
+    #     states={'draft': [('readonly', False)]},
+    #     attrs={'required': [('codigo_escenario', '!=', False)]}
+    # )
     tipo_frase = fields.Char(
         string='Tipo de frase FEL',
         help="Si desea agregar una frase el documento agregara este valor para enviarlo al certificador.",
         readonly=True,
         states={'draft': [('readonly', False)]},
-        attrs={'required': [('codigo_escenario', '!=', False)]}
     )
-
     def amount_to_text1(self):
 
         self.ensure_one()
@@ -236,7 +241,7 @@ class FelMegaprint(models.Model):
         if factura.partner_id.cui_por_nit and factura.partner_id.cui:
             Receptor.attrib['TipoEspecial'] = "CUI"
         if factura.partner_id.country_id and factura.partner_id.country_id.code != 'GT':
-            Receptor.attrib['TipoEspecial'] = "EXT"
+            Receptor.attrib['TipoEspecial'] = "EXT
 
         DireccionReceptor = etree.SubElement(Receptor, DTE_NS + "DireccionReceptor")
         Direccion = etree.SubElement(DireccionReceptor, DTE_NS + "Direccion")

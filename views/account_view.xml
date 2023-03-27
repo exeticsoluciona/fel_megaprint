@@ -29,7 +29,7 @@
 								</group>
 								<group>
 									<field name="codigo_escenario" />
-									<field name="tipo_frase" />
+									<field name="tipo_frase" attrs="{'required': [('codigo_escenario', '!=', False)]}"/>
 								</group>
 								<group>
 			                        <field name="consignatario_fel" attrs="{'invisible': [('tipo_gasto','!=','importacion')]}"/>
@@ -58,7 +58,7 @@
 			<field name="arch" type="xml">
 				<data>
 					<notebook position = "inside" >
-						<page string="Configuración FEL">
+						<page string="FEL Configuración">
 							<group string="megaprint">
 								<field name="tipo_documento_fel" attrs="{'invisible':[('type', '!=', 'sale'),('type', '!=', 'sale_refund'), ('type', '!=', 'purchase')]}" />
 								<field name="direccion_fel" attrs="{'invisible':[('type', '!=', 'sale'),('type', '!=', 'sale_refund'), ('type', '!=', 'purchase')]}" />
@@ -92,7 +92,7 @@
 				<data>
 					<notebook position="inside">
 						<page string="FEL">
-							<group string="Rutas API Megaprint">
+							<group string="megaprint">
 								<group>
 									<field name="url_api_fel" />
 									<field name="url_api_token_fel" />
