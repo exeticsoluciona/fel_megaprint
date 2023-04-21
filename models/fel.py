@@ -98,7 +98,7 @@ class FelMegaprint(models.Model):
         DS_NS = "{http://www.w3.org/2000/09/xmldsig#}"
 
         tipo_documento_fel = factura.journal_id.tipo_documento_fel
-        if tipo_documento_fel in ['FACT', 'FACM'] and factura.type == 'out_refund':
+        if tipo_documento_fel in ['FACT', 'FACM'] and factura.move_type == 'out_refund':
             tipo_documento_fel = 'NCRE'
 
         nit_receptor = ''
@@ -180,7 +180,7 @@ class FelMegaprint(models.Model):
 
         tipo_documento_fel = factura.journal_id.tipo_documento_fel
         print("tipo_documento_fel>>>>>>>>>>>>>>>>",tipo_documento_fel)
-        if tipo_documento_fel in ['FACT', 'FACM'] and factura.type == 'out_refund':
+        if tipo_documento_fel in ['FACT', 'FACM'] and factura.move_type == 'out_refund':
             tipo_documento_fel = 'NCRE'
 
         moneda = "GTQ"
