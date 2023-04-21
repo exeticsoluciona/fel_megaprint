@@ -109,7 +109,7 @@ class AccountInvoice(models.Model):
                                     ".//{http://www.sat.gob.gt/dte/fel/0.2.0}NumeroAutorizacion")
                                 factura.tipo_doc_fel = factura.journal_id.tipo_documento_fel
                                 factura.firma_fel = numero_autorizacion.text
-                                factura.name = numero_autorizacion.get("Serie") + "-" + numero_autorizacion.get(
+                                factura.ref = numero_autorizacion.get("Serie") + "-" + numero_autorizacion.get(
                                     "Numero")
                                 factura.serie_fel = numero_autorizacion.get("Serie")
                                 factura.numero_fel = numero_autorizacion.get("Numero")
@@ -123,7 +123,7 @@ class AccountInvoice(models.Model):
                                 if len(resultadoXML.xpath("//listado_errores")) == 0:
                                     pdf = resultadoXML.xpath("//pdf")[0].text
                                     factura.pdf_fel = pdf
-                                    pdfname = '{}.pdf'.format(factura.name)
+                                    pdfname = '{}.pdf'.format(factura.ref)
                                     factura.name_pdf_fel = pdfname
                             else:
                                 raise UserError(r.text)
@@ -234,7 +234,7 @@ class AccountInvoice(models.Model):
                                     if len(resultadoXML.xpath("//listado_errores")) == 0:
                                         pdf = resultadoXML.xpath("//pdf")[0].text
                                         factura.pdf_fel = pdf
-                                        pdfname = '{}.pdf'.format(factura.name)
+                                        pdfname = '{}.pdf'.format(factura.ref)
                                         factura.name_pdf_fel = pdfname
                             else:
                                 raise UserError(r.text)
