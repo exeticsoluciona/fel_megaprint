@@ -32,9 +32,9 @@
 									<field name="tipo_frase" attrs="{'required': [('codigo_escenario', '!=', False)]}"/>
 								</group>
 								<group>
-			                        <field name="consignatario_fel" attrs="{'invisible': [('tipo_gasto','!=','importacion')]}"/>
-			                        <field name="comprador_fel" attrs="{'invisible': [('tipo_gasto','!=','importacion')]}"/>
-			                        <field name="exportador_fel" attrs="{'invisible': [('tipo_gasto','!=','importacion')]}"/>
+			                        <field name="consignatario_fel" />
+			                        <field name="comprador_fel" />
+			                        <field name="exportador_fel" />
 								</group>
 							</group>
 						</page>
@@ -46,7 +46,7 @@
 					</xpath>
 				    <field name="invoice_incoterm_id" position="replace"/>
 		            <field name="exportador_fel" position="after">
-		                <field name="invoice_incoterm_id" attrs="{'invisible': [('tipo_gasto','!=','importacion')]}" />
+		                <field name="invoice_incoterm_id" />
 		            </field>					
 				</data>
 			</field>

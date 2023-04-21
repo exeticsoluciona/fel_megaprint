@@ -13,7 +13,6 @@
 								<group>
 									<field name="username_fel" />
 									<field name="password_fel" />
-									<!--<field name="root_partner_id" position="after" /> -->
 									<field name="codigo_establecimiento" placeholder="Código Establecimiento Fel" />
 									<field name="frases_fel" />
 								</group>
