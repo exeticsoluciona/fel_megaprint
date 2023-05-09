@@ -305,7 +305,7 @@ class FelMegaprint(models.Model):
 
             tipo_producto = "B"
 
-            if linea.product_id.type == 'service':
+            if linea.product_id.detailed_type == 'service':
                 tipo_producto = "S"
 
             precio_unitario = linea.price_unit * (100 - linea.discount) / 100
@@ -458,9 +458,28 @@ class FelMegaprint(models.Model):
 
                 total_iva_retencion = 0
 
-                for impuesto in factura.amount_by_group:
-                    if impuesto[1] > 0:
-                        total_iva_retencion += impuesto[1]
+                #version 13 14
+                if 'amount_by_group' in factura.fields_get():
+                    for impuesto in factura.amount_by_group:
+                        if impuesto[1] > 0:
+                            total_iva_retencion += impuesto[1]
+                #version 15
+                if 'tax_totals_json' in factura.fields_get():
+                    invoice_totals = json.loads(factura.tax_totals_json)
+                    for grupos in invoice_totals['groups_by_subtotal'].values():
+                        for impuesto in grupos:
+                            if impuesto['tax_group_amount'] > 0:
+                                total_iva_retencion += impuesto['tax_group_amount']
+
+
+                # version 16
+                if 'tax_totals' in factura.fields_get():
+                    invoice_totals = json.loads(factura.tax_totals)
+                    for grupos in invoice_totals['groups_by_subtotal'].values():
+                        for impuesto in grupos:
+                            if impuesto['tax_group_amount'] > 0:
+                                total_iva_retencion += impuesto['tax_group_amount']
+
 
                 Complemento = etree.SubElement(Complementos, DTE_NS + "Complemento", IDComplemento="text",
                                                NombreComplemento="text", URIComplemento="text")
