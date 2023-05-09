@@ -463,6 +463,7 @@ class FelMegaprint(models.Model):
                     for impuesto in factura.amount_by_group:
                         if impuesto[1] > 0:
                             total_iva_retencion += impuesto[1]
+
                 #version 15
                 if 'tax_totals_json' in factura.fields_get():
                     invoice_totals = json.loads(factura.tax_totals_json)
@@ -474,7 +475,7 @@ class FelMegaprint(models.Model):
 
                 # version 16
                 if 'tax_totals' in factura.fields_get():
-                    invoice_totals = json.loads(factura.tax_totals)
+                    invoice_totals = (factura.tax_totals)
                     for grupos in invoice_totals['groups_by_subtotal'].values():
                         for impuesto in grupos:
                             if impuesto['tax_group_amount'] > 0:
