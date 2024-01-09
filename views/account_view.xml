@@ -11,42 +11,42 @@
 						<page string= "Datos FEL">
 							<group>
 								<group>
-									<field name="estado_doc_fel" attrs="{'readonly': [('state','!=','draft')]}"/>
-									<field name="tipo_doc_fel" attrs="{'readonly': [('state','!=','draft')]}"/>
-									<field name="firma_fel" attrs="{'readonly': [('state','!=','draft')]}"/>
-									<field name="serie_fel" attrs="{'readonly': [('state','!=','draft')]}"/>
-									<field name="numero_fel" attrs="{'readonly': [('state','!=','draft')]}"/>
+									<field name="estado_doc_fel"  readonly="state != 'draft'"/>
+									<field name="tipo_doc_fel"  readonly="state != 'draft'"/>
+									<field name="firma_fel"  readonly="state != 'draft'"/>
+									<field name="serie_fel"  readonly="state != 'draft'"/>
+									<field name="numero_fel"  readonly="state != 'draft'"/>
 									<field name="name_pdf_fel" invisible="1"/>
-									<field name="pdf_fel" filename="name_pdf_fel"/>
-									<field name="pdf_uri" attrs="{'invisible': [('state','!=','draft')]}" />				
+									<field name="pdf_fel" filename="name_pdf_fel" readonly="state != 'draft'"/>
+									<field name="pdf_uri"  readonly="state != 'draft'"/>
 								</group>
 								<group>
-									<field name="factura_org_id" attrs="{'readonly': [('state','!=','draft')]}" domain="[('partner_id', '=', partner_id)]"/>
-									<field name="motivo_nota" attrs="{'readonly': [('state','!=','draft')]}"/>
-									<field name="motivo_anula_fel" attrs="{'readonly': [('state','!=','draft')]}"/>
-									<field name="contingencia_fel" attrs="{'readonly': [('state','!=','draft')]}" />
-									<field name="uuid_contigencia" attrs="{'readonly': [('state','!=','draft')]}" />
+									<field name="factura_org_id"  readonly="state != 'draft'" domain="[('partner_id', '=', partner_id)]"/>
+									<field name="motivo_nota"  readonly="state != 'draft'"/>
+									<field name="motivo_anula_fel"  readonly="state != 'draft'"/>
+									<field name="contingencia_fel"  readonly="state != 'draft'"/>
+									<field name="uuid_contigencia"  readonly="state != 'draft'"/>
 								</group>
 								<group>
-									<field name="codigo_escenario" />
-									<field name="tipo_frase" />
+									<field name="codigo_escenario" readonly="state != 'draft'"/>
+									<field name="tipo_frase" required="[('codigo_escenario', '!=', False)]" readonly="state != 'draft'"/>/>
 								</group>
 								<group>
-			                        <field name="consignatario_fel" attrs="{'invisible': [('tipo_gasto','!=','importacion')]}"/>
-			                        <field name="comprador_fel" attrs="{'invisible': [('tipo_gasto','!=','importacion')]}"/>
-			                        <field name="exportador_fel" attrs="{'invisible': [('tipo_gasto','!=','importacion')]}"/>
+			                        <field name="consignatario_fel" />
+			                        <field name="comprador_fel" />
+			                        <field name="exportador_fel" />
 								</group>
 							</group>
 						</page>
 					</notebook>
 					<xpath expr="//header" position="inside">
-						<button name="invoice_fel"  type="object" class="oe_highlight invoice_fel" string="FEL" attrs="{'invisible': [('state', '==', 'draft')]}"/>
-						<button name="invoice_contigencia"  type="object" class="oe_highlight invoice_fel" string="Contingencia" attrs="{'invisible': [('state', '==', 'draft')]}"/>
-						<button name="invoiceDue_fel" type="object" class="oe_highlight invoiceDue_fel" string="Cancelar FEL" attrs="{'invisible': [('state', 'not in', ['draft', 'posted'])]}"/>
+						<button name="invoice_fel"  type="object" class="oe_highlight invoice_fel" string="FEL" invisible="state == 'draft'"/>
+						<button name="invoice_contigencia"  type="object" class="oe_highlight invoice_fel" string="Contingencia" invisible="state == 'draft'"/>
+						<button name="invoiceDue_fel" type="object" class="oe_highlight invoiceDue_fel" string="Cancelar FEL" invisible="state not in ['draft', 'posted']"/>
 					</xpath>
 				    <field name="invoice_incoterm_id" position="replace"/>
 		            <field name="exportador_fel" position="after">
-		                <field name="invoice_incoterm_id" attrs="{'invisible': [('tipo_gasto','!=','importacion')]}" />
+		                <field name="invoice_incoterm_id" />
 		            </field>					
 				</data>
 			</field>
@@ -58,10 +58,10 @@
 			<field name="arch" type="xml">
 				<data>
 					<notebook position = "inside" >
-						<page string="Configuración FEL">
+						<page string="FEL Configuración">
 							<group string="megaprint">
-								<field name="tipo_documento_fel" attrs="{'invisible':[('type', '!=', 'sale'),('type', '!=', 'sale_refund'), ('type', '!=', 'purchase')]}" />
-								<field name="direccion_fel" attrs="{'invisible':[('type', '!=', 'sale'),('type', '!=', 'sale_refund'), ('type', '!=', 'purchase')]}" />
+								<field name="tipo_documento_fel" invisible="[('type', '!=', 'sale'),('type', '!=', 'sale_refund'), ('type', '!=', 'purchase')]" />
+								<field name="direccion_fel" invisible="[('type', '!=', 'sale'),('type', '!=', 'sale_refund'), ('type', '!=', 'purchase')]" />
 							</group>
 						</page>
 					</notebook>
@@ -76,9 +76,9 @@
 			<field name="arch" type="xml">
 				<field name="state" position="after">
 					<field name="tipo_doc_fel"/>
-					<field name="serie_fel"/>
-					<field name="numero_fel"/>
-					<field name="firma_fel"/>
+					<field name="serie_fel" readonly="state != 'draft'"/>
+					<field name="numero_fel" readonly="state != 'draft'"/>
+					<field name="firma_fel" readonly="state != 'draft'"/>
 					<field name="factura_org_id" string="Referencia" />					
 					<field name="uuid_contigencia" string="Numero de acceso" />					
 				</field>
@@ -92,7 +92,7 @@
 				<data>
 					<notebook position="inside">
 						<page string="FEL">
-							<group string="Rutas API Megaprint">
+							<group string="megaprint">
 								<group>
 									<field name="url_api_fel" />
 									<field name="url_api_token_fel" />
