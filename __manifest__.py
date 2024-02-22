@@ -1,6 +1,6 @@
 {
     'name': 'FEL Mega Print',
-    'version': '17.0.1',
+    'version': '17.0.0.0.1',
     'category': 'Account',
     'description': """ Integra Odoo y factura electrónica con el CERTIFICADOR Mega Print, Genera DTO locales y DTO locales en contingencia """,
     'author': 'Eduardo Cortez Paz, Allan Ramirez',
